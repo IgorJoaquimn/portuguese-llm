@@ -1,0 +1,11 @@
+{   
+    "genero": ["m","h"],
+
+    "raca": ["1"],
+    "regiao":["r"],
+
+    "pronome1": [],
+    "pronome2": [],
+
+    "unused": ["ee"]
+}

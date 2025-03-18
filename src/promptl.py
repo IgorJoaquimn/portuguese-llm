@@ -1,49 +1,71 @@
 import openai
 from promptl_ai import Promptl
 
-# Set your OpenAI API key
-openai.api_key = "your_openai_api_key"
+import itertools
 
-# Initialize Promptl
-promptl = Promptl()
+import absl.flags
+import absl.app
 
-# Define the PromptL template
-prompt_template = """
-<step>
-    First, think step by step about how to answer the user's question.
-    <user>
-        Taking into account this context: {{context}}
-        I have the following question: {{question}}
-    </user>
-</step>
-<step>
-    Finally, answer the user's question succinctly yet completely.
-</step>
-"""
+from envs import openai_keys
+from renderedPromptRecord import RenderedPromptRecord
 
-# Function to generate a response using OpenAI API
-def generate_response(context, question):
-    # Format the prompt using Promptl
-    formatted_prompt = promptl.chains.create(
-        prompt=prompt_template,
-        parameters={"context": context, "question": question}
-    ).step()  # Get the formatted prompt
+FLAGS = absl.flags.FLAGS
 
-    # Send the formatted prompt to OpenAI API
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": formatted_prompt.messages[-1]['content']}
-        ],
-        temperature=0.7
-    )
+# Definição das flags
+absl.flags.DEFINE_string("prompt_path", None, "Path that contains the desired template")
+absl.flags.DEFINE_string("trait_list_path",None,"Path of the traits JSON file - can be null")
+absl.flags.mark_flag_as_required("prompt_path")
+
+
+class PromptRenderGenerator():
+    def __init__(self,traits):
+        self.promptl = Promptl()
+        self.traits_comb = list(itertools.product(*traits.values()))
+        self.traits_keys = traits.keys()
+
+    def trait_comb_to_dict(self,trait_list):
+        return dict(zip(self.traits_keys,trait_list))
+
+    def read_prompt_from_file(self,path):
+        with open(path,"r") as f:
+            return f.read()
+
+    def generate_response(self,prompt_template):
+        # Format the prompt using Promptl
+        messages_list = []
+        config_list = []
+        for traits_list in self.traits_comb:
+            traits = self.trait_comb_to_dict(traits_list)
+            messages, config= self.promptl.prompts.render(
+                prompt=prompt_template,
+                parameters=traits
+            )
+            messages_list.append(messages)
+            config_list.append(config)
+        return messages_list, config_list
     
-    return response["choices"][0]["message"]["content"]
+    def generate_record(self,prompt_path):
+        prompt_template = self.read_prompt_from_file(prompt_path)
+        messages_list, config_list = self.generate_response(prompt_template)
+        return RenderedPromptRecord(prompt_template, prompt_path, messages_list, config_list)
 
-# Example usage
-context = "PromptL is a templating language specifically designed for LLM prompting."
-question = "What is PromptL?"
+def main(_):
+    prompt_path = FLAGS.prompt_path
+    trait_list_path = FLAGS.trait_list_path
 
-answer = generate_response(context, question)
-print(answer)
+
+    promptRenderGenerator = PromptRenderGenerator({
+        "genero": ["m","h"],
+        "raca": ["1"],
+        "regiao":["r"],
+        "unused": ["ee"]
+    })
+    record = promptRenderGenerator.generate_record(prompt_path)
+    print(record)
+    record.save_to_mirror_file()
+    record = record.load_from_file(record.new_path)
+    print(record)
+
+
+if __name__ == '__main__':
+    absl.app.run(main)
