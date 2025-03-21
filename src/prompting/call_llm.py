@@ -19,7 +19,8 @@ class LlmCaller():
         self.client = client 
 
     def generate_one_response(self,config,message):
-        completion = self.client.chat.completions.create(
+        # completion = self.client.chat.completions.create(
+        completion = self.client.create(
             **config, 
             messages=message
         )
