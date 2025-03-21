@@ -1,3 +1,5 @@
+import os
+import json
 import openai
 from promptl_ai import Promptl
 
@@ -5,7 +7,6 @@ import itertools
 
 import absl.flags
 import absl.app
-
 from envs import openai_keys
 from renderedPromptRecord import RenderedPromptRecord
 
@@ -14,21 +15,49 @@ FLAGS = absl.flags.FLAGS
 # Definição das flags
 absl.flags.DEFINE_string("prompt_path", None, "Path that contains the desired template")
 absl.flags.DEFINE_string("trait_list_path",None,"Path of the traits JSON file - can be null")
+absl.flags.DEFINE_string("model_config_folder","model_config/","Path of the config files")
 absl.flags.mark_flag_as_required("prompt_path")
+absl.flags.mark_flag_as_required("trait_list_path")
 
 
 class PromptRenderGenerator():
-    def __init__(self,traits):
+    def __init__(self,traits, model_config_folder = "model_config/"):
         self.promptl = Promptl()
         self.traits_comb = list(itertools.product(*traits.values()))
         self.traits_keys = traits.keys()
+        self.model_config_folder = model_config_folder
 
     def trait_comb_to_dict(self,trait_list):
         return dict(zip(self.traits_keys,trait_list))
 
-    def read_prompt_from_file(self,path):
+    def enhance_traits(self,trait_dict):
+        artigo_mapping = {
+            "homem": "o",
+            "mulher": "a",
+            "não-binária": "a",
+        }
+
+        pronome_mapping = {
+            "homem": "ele",
+            "mulher": "ela",
+            "não-binária": "elu",
+        }
+
+        trait = trait_dict.get("genero", "")
+        trait_dict["artigo"] = artigo_mapping.get(trait, "")
+        trait_dict["pronome"] = pronome_mapping.get(trait, "")
+        return trait_dict
+
+    @staticmethod
+    def read_from_file(path):
         with open(path,"r") as f:
             return f.read()
+
+    def treat_message(self,message):
+        text = message[0].content[0].text
+        text = " ".join(text.split())
+        message[0].content[0].text = text
+        return message
 
     def generate_response(self,prompt_template):
         # Format the prompt using Promptl
@@ -36,36 +65,36 @@ class PromptRenderGenerator():
         config_list = []
         for traits_list in self.traits_comb:
             traits = self.trait_comb_to_dict(traits_list)
+            traits = self.enhance_traits(traits)
             messages, config= self.promptl.prompts.render(
                 prompt=prompt_template,
                 parameters=traits
             )
-            messages_list.append(messages)
-            config_list.append(config)
+            messages_list.append(self.treat_message(messages[1]))
+            config_list.append(config[1])
         return messages_list, config_list
     
     def generate_record(self,prompt_path):
-        prompt_template = self.read_prompt_from_file(prompt_path)
-        messages_list, config_list = self.generate_response(prompt_template)
-        return RenderedPromptRecord(prompt_template, prompt_path, messages_list, config_list)
+        configs = [
+            PromptRenderGenerator.read_from_file(self.model_config_folder + file) 
+            for file in os.listdir(self.model_config_folder)
+        ]
+        prompt_template = PromptRenderGenerator.read_from_file(prompt_path)
+        render = [self.generate_response(config + prompt_template) for config in configs]
+        messages_list, configs_list = zip(*render)
+        return RenderedPromptRecord(prompt_template, prompt_path, messages_list[0], configs_list[0])
 
 def main(_):
     prompt_path = FLAGS.prompt_path
     trait_list_path = FLAGS.trait_list_path
+    model_config_folder = FLAGS.model_config_folder
+    traits = json.load(open(trait_list_path))
 
-
-    promptRenderGenerator = PromptRenderGenerator({
-        "genero": ["m","h"],
-        "raca": ["1"],
-        "regiao":["r"],
-        "unused": ["ee"]
-    })
+    promptRenderGenerator = PromptRenderGenerator(traits,model_config_folder)
     record = promptRenderGenerator.generate_record(prompt_path)
-    print(record)
     record.save_to_mirror_file()
     record = record.load_from_file(record.new_path)
     print(record)
-
 
 if __name__ == '__main__':
     absl.app.run(main)

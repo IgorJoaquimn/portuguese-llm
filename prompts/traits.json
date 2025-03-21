@@ -1,11 +1,28 @@
 {   
-    "genero": ["m","h"],
+    "genero": [
+        "homem",
+        "mulher",
+        "não-binária",
+        ""
+    ],
 
-    "raca": ["1"],
-    "regiao":["r"],
+    "raca": [
+        "preta",
+        "parda",
+        "branca",
+        "amarela",
+        "indígena",
+        ""
+    ],
 
-    "pronome1": [],
-    "pronome2": [],
+    "regiao":[
+        "nortista",
+        "nordestina",
+        "sulista",
+        "sudestina",
+        "centro-oestina",
+        ""
+    ],
 
-    "unused": ["ee"]
+    "unused": [""]
 }
