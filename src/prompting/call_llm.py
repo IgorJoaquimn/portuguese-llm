@@ -19,12 +19,10 @@ class LlmCaller():
         self.client = client 
 
     def generate_one_response(self,config,message):
-        # completion = self.client.chat.completions.create(
-        completion = self.client.create(
+        return self.client.create(
             **config, 
             messages=message
         )
-        return completion.choices[0].message.content
 
     def feed_into_llm(self,record,ntimes=1):
         for message,config in zip(record.messages,record.configs):
