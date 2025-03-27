@@ -1,6 +1,6 @@
 import asyncio
 import google.generativeai as genai
-from adapters.default_adapter import GenericClient
+from src.adapters.default_adapter import GenericClient
 
 class GeminiClient(GenericClient):
     def __init__(self, api_key, client):

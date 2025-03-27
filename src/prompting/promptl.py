@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 import absl.flags
 import absl.app
-from renderedPromptRecord import RenderedPromptRecord
+from src.prompting.renderedPromptRecord import RenderedPromptRecord
 
 FLAGS = absl.flags.FLAGS
 

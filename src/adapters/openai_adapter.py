@@ -1,5 +1,5 @@
 import asyncio
-from adapters.default_adapter import GenericClient
+from src.adapters.default_adapter import GenericClient
 from openai import AsyncOpenAI
 from openai import OpenAI
 

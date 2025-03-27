@@ -3,7 +3,7 @@ import os
 import numpy as np
 import absl.flags
 import absl.app
-from renderedPromptRecord import RenderedPromptRecord
+from src.prompting.renderedPromptRecord import RenderedPromptRecord
 
 FLAGS = absl.flags.FLAGS
 

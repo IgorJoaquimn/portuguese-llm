@@ -3,8 +3,8 @@ from openai import OpenAI
 
 import absl.flags
 import absl.app
-from envs import openai_keys
-from renderedPromptRecord import RenderedPromptRecord
+from src.envs import openai_keys
+from src.prompting.renderedPromptRecord import RenderedPromptRecord
 import pickle
 
 FLAGS = absl.flags.FLAGS
