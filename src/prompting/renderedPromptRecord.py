@@ -1,4 +1,5 @@
 import pickle
+import pandas as pd
 from token_count import TokenCount
 
 template_suffix = ".tmpl"
@@ -13,8 +14,14 @@ class RenderedPromptRecord():
         self.prompt_path = prompt_path
         self.messages = messages
         self.configs = configs
-
         self.responses = []
+        
+        self.data = pd.DataFrame(columns = [
+            "original_prompt",
+            "prompt_path",
+            "message",
+            "response"
+        ] + list(configs.keys()))
 
     def replace_config(config):
         self.configs = len(self.configs) * [config]
