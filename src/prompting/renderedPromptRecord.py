@@ -31,7 +31,18 @@ class RenderedPromptRecord():
         self.message_data = pd.concat(
             [self.message_data, pd.DataFrame([message_record])], ignore_index=True
         )
+        self.configs = config
         return self.message_data
+
+    def append_response(self,messageId, response):
+        response_record = {
+            "messageId": messageId,
+            "response": response
+        }
+        self.response_data = pd.concat(
+            [self.response_data, pd.DataFrame([response_record])], ignore_index=True
+        )
+        return self.response_data
 
 
     def save_to_mirror_file(self):
@@ -46,9 +57,6 @@ class RenderedPromptRecord():
 
     def load_from_file(self,path):
         return pickle.load(open(path,"rb"))
-
-    def append_response(self,responses):
-        self.responses.append(responses)
 
     def generate_token_count(self):
         token_counts = []
@@ -66,6 +74,11 @@ class RenderedPromptRecord():
             token_counts.append(tc.num_tokens_from_string(text))  # Compute token count
 
         return token_counts
+
+    def __iter__(self):
+        """Iterator that yields each row in message_data as a dictionary."""
+        for _, row in self.message_data.iterrows():
+            yield row.to_dict()  # Convert each row to a dictionary and yield it
 
 
     def __str__(self):

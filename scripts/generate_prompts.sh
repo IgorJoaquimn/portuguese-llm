@@ -9,7 +9,7 @@ for file in "$PROMPT_DIR"/*.tmplt; do
     filename=$(basename "$file")
     
     # Construct the command
-    CMD="python3 src/promptl.py --prompt_path=$PROMPT_DIR/$filename --trait_list_path=$PROMPT_DIR/traits.json"
+    CMD="python3 src/prompting/promptl.py --prompt_path=$PROMPT_DIR/$filename --trait_list_path=$PROMPT_DIR/traits.json"
     
     # Echo the command
     echo "$CMD"

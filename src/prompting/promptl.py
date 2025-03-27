@@ -4,6 +4,7 @@ import openai
 from promptl_ai import Promptl
 
 import itertools
+from tqdm import tqdm
 
 import absl.flags
 import absl.app
@@ -81,7 +82,11 @@ class PromptRenderGenerator():
             for file in os.listdir(self.model_config_folder)
         ]
         prompt_template = PromptRenderGenerator.read_from_file(prompt_path)
-        render = [self.generate_prompt_from_template(config + prompt_template) for config in configs]
+        print("Generating prompts from template",prompt_path)
+        render = [
+            self.generate_prompt_from_template(config + prompt_template) 
+            for config in tqdm(configs)
+        ]
         messages_list, configs_list, trait_list = zip(*render)
         record = RenderedPromptRecord(prompt_template, prompt_path)
         for message, config,trait in zip(messages_list[0],configs_list[0],trait_list[0]):

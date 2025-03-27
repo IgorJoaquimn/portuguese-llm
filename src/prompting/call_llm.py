@@ -24,12 +24,18 @@ class LlmCaller():
             messages=message
         )
 
-    def feed_into_llm(self,record,ntimes=1):
-        for message,config in zip(record.messages,record.configs):
+
+    def feed_into_llm(self, record, ntimes=1):
+        for row in record:  # Use the iterator to go through message_data
+            message = row["message"]
+            config = {key: row[key] for key in record.configs.keys()}  # Extract config from row
+
+            # Append responses for each message, repeated 'ntimes' times
             record.append_response([
-                self.generate_one_response(config,message) 
+                self.generate_one_response(config, message)
                 for _ in range(ntimes)
             ])
+
                 
 def main(_):
     client = OpenAI(
