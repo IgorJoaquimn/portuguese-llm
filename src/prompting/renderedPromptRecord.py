@@ -34,7 +34,7 @@ class RenderedPromptRecord():
         self.configs = config
         return self.message_data
 
-    def append_response(self,messageId, response):
+    def add_response(self,messageId, response):
         response_record = {
             "messageId": messageId,
             "response": response

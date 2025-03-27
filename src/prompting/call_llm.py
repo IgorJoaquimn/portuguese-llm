@@ -27,16 +27,20 @@ class LlmCaller():
 
     def feed_into_llm(self, record, ntimes=1):
         for row in record:  # Use the iterator to go through message_data
+            messageId = row["messageId"]
             message = row["message"]
             config = {key: row[key] for key in record.configs.keys()}  # Extract config from row
 
-            # Append responses for each message, repeated 'ntimes' times
-            record.append_response([
+            # Generate responses for each message 'ntimes' times
+            responses = [
                 self.generate_one_response(config, message)
                 for _ in range(ntimes)
-            ])
+            ]
 
-                
+            # Append all generated responses to the record
+            for response in responses:
+                record.add_response(messageId, response)
+
 def main(_):
     client = OpenAI(
         api_key=openai_keys[0],
