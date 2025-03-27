@@ -9,10 +9,8 @@ class RenderedPromptRecord():
     def __init__(self,original_prompt,prompt_path):
         self.original_prompt = original_prompt
         self.prompt_path = prompt_path
-        self.messages  = []
-        self.configs   = []
-        self.responses = []
 
+        self.config_keys = {}
         self.message_data = pd.DataFrame()
 
         self.response_data = pd.DataFrame()
@@ -31,7 +29,7 @@ class RenderedPromptRecord():
         self.message_data = pd.concat(
             [self.message_data, pd.DataFrame([message_record])], ignore_index=True
         )
-        self.configs = config
+        self.config_keys = list(config.keys())
         return self.message_data
 
     def add_response(self,messageId, response):

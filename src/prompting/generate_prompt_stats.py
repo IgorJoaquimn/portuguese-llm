@@ -20,8 +20,8 @@ def main(_):
     token_counts = [np.sum(r.generate_token_count()) for r in records]
     token_count_all = np.sum(token_counts)
     token_count_mean = np.mean(token_counts)
-    n_messsages = np.sum([len(r.messages) for r in records])
-    n_messsages_mean = np.mean([len(r.messages) for r in records])
+    n_messsages = np.sum([len(r.message_data) for r in records])
+    n_messsages_mean = np.mean([len(r.message_data) for r in records])
 
     print("Token count all",  token_count_all)
     print("Token count mean", token_count_mean)
