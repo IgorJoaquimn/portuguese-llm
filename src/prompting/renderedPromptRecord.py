@@ -1,30 +1,38 @@
 import pickle
 import pandas as pd
 from token_count import TokenCount
+from uuid import uuid5,NAMESPACE_DNS
 
 template_suffix = ".tmpl"
 
 class RenderedPromptRecord():
-    def __init__(self,
-                 original_prompt,
-                 prompt_path,
-                 messages,
-                 configs):
+    def __init__(self,original_prompt,prompt_path):
         self.original_prompt = original_prompt
         self.prompt_path = prompt_path
-        self.messages = messages
-        self.configs = configs
+        self.messages  = []
+        self.configs   = []
         self.responses = []
-        
-        self.data = pd.DataFrame(columns = [
-            "original_prompt",
-            "prompt_path",
-            "message",
-            "response"
-        ] + list(configs.keys()))
 
-    def replace_config(config):
-        self.configs = len(self.configs) * [config]
+        self.message_data = pd.DataFrame()
+
+        self.response_data = pd.DataFrame()
+
+    def add_message(self,original_prompt,config,trait,message):
+        message_id = uuid5(NAMESPACE_DNS, 
+                           original_prompt + str(trait) + str(config)).int
+
+        message_record = {
+            "messageId": message_id,
+            "message": message,
+            "trait": trait,
+            "original_prompt": original_prompt,
+            **config  # Unpack configs into columns
+        }
+        self.message_data = pd.concat(
+            [self.message_data, pd.DataFrame([message_record])], ignore_index=True
+        )
+        return self.message_data
+
 
     def save_to_mirror_file(self):
         if template_suffix not in self.prompt_path: raise EnvironmentError(self.prompt_path)
@@ -35,7 +43,7 @@ class RenderedPromptRecord():
     @staticmethod
     def load_from_file_static(path):
         return pickle.load(open(path,"rb"))
-        
+
     def load_from_file(self,path):
         return pickle.load(open(path,"rb"))
 
@@ -44,27 +52,35 @@ class RenderedPromptRecord():
 
     def generate_token_count(self):
         token_counts = []
-        for message, config in zip(self.messages,self.configs):
-            tc = TokenCount(model_name=config["model"])
-            token_counts.append(tc.num_tokens_from_string(message[0].content[0].text))
+        
+        for _, row in self.message_data.iterrows():  # Iterate over DataFrame rows
+            message = row["message"]
+            model_name = row.get("model", None)  # Get model name if it exists in configs
+
+            if hasattr(message, "content") and message.content:
+                text = message.content[0].text  # Extract the actual text
+            else:
+                text = str(message)  # Fallback if message is not in expected format
+            
+            tc = TokenCount(model_name=model_name)  # Initialize TokenCount with model
+            token_counts.append(tc.num_tokens_from_string(text))  # Compute token count
+
         return token_counts
 
 
     def __str__(self):
-        header =  f"""Prompt path: {self.prompt_path}\n"""
+        """Returns a readable string representation of the object."""
+        # Convert the 'message' column using `.content[0].text`
+        if not self.message_data.empty:
+            self.message_data["message_text"] = self.message_data["message"].apply(
+                lambda msg: msg.content[0].text if hasattr(msg, "content") and msg.content else str(msg)
+            )
 
-        body = ""
-        if(self.responses):
-            for message, config,responses in zip(self.messages,self.configs, self.responses):
-                body += f"\tMessage: {message[0].content[0].text}\n"
-                body += f"\tConfig: {config}\n"
-                if(responses):
-                    body += f"\tFirst response: {responses[0]}\n"
-                body += "-"*80 + "\n" 
-        else:
-            for message, config in zip(self.messages,self.configs):
-                body += f"\tMessage: {message[0].content[0].text}\n"
-                body += f"\tConfig: {config}\n"
-                body += "-"*80 + "\n" 
-        return header + body
-    
+        return (
+            f"RenderedPromptRecord:\n"
+            f"Original Prompt: {self.original_prompt}\n"
+            f"Prompt Path: {self.prompt_path}\n\n"
+            f"Message Data:\n{self.message_data[['messageId','message_text']].to_string(index=False)}\n\n"
+            f"Response Data:\n{self.response_data.to_string(index=False)}"
+        )
+
