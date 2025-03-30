@@ -22,8 +22,7 @@ class LlmCaller():
 
     def generate_one_response(self,config,message):
         return self.client.create(
-            **config, 
-            messages=message
+            config, message
         )
 
 
@@ -43,14 +42,15 @@ class LlmCaller():
 
             message = row["message"]
             # Generate responses for each message 'ntimes' times
-            responses = [ str(i)
-                # self.generate_one_response(config, message)
+            responses = [ 
+                self.generate_one_response(config, message)
                 for i in range(ntimes - response_count)
             ]
 
             # Append all generated responses to the record
             for response in responses:
                 record.add_response(messageId, response)
+            break
         return record
 
 def main(_):
