@@ -1,5 +1,6 @@
 import json
 from openai import OpenAI
+import math
 
 import absl.flags
 import absl.app
@@ -26,20 +27,29 @@ class LlmCaller():
 
 
     def feed_into_llm(self, record, ntimes=1):
-        for row in record:  # Use the iterator to go through message_data
+        for row in record.message_iter(): 
             messageId = row["messageId"]
             message = row["message"]
-            config = {key: row[key] for key in record.configs.keys()}  # Extract config from row
+
+            # Check if the messageId already has responses
+            response_count = record.count_responses(messageId)
+
+            if response_count >= ntimes:
+                print(f"Already generated {response_count} responses for messageId {row['messageId']}.")
+                continue
+
+            config = {key: row[key] for key in record.config_keys}  # Extract config from row
 
             # Generate responses for each message 'ntimes' times
             responses = [
                 self.generate_one_response(config, message)
-                for _ in range(ntimes)
+                for _ in range(ntimes - response_count)
             ]
 
             # Append all generated responses to the record
             for response in responses:
                 record.add_response(messageId, response)
+        return record
 
 def main(_):
     client = OpenAI(
@@ -52,7 +62,7 @@ def main(_):
     assert record 
 
     caller = LlmCaller(client)
-    caller.feed_into_llm(record,ntimes)
+    record = caller.feed_into_llm(record,ntimes)
     record.save_to_mirror_file()
     print(record)
 

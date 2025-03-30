@@ -13,7 +13,9 @@ class RenderedPromptRecord():
         self.config_keys = {}
         self.message_data = pd.DataFrame()
 
-        self.response_data = pd.DataFrame()
+        # Make the default response a empty String
+        self.response_data = pd.DataFrame(columns=["messageId","response"])
+        self.response_data["response"] = self.response_data["response"].astype(str)
 
     def add_message(self,original_prompt,config,trait,message):
         message_id = uuid5(NAMESPACE_DNS, 
@@ -42,9 +44,16 @@ class RenderedPromptRecord():
         )
         return self.response_data
 
+    def count_responses(self,messageId):
+        # Count the number of responses for a given messageId
+        count = self.response_data[self.response_data["messageId"] == messageId].shape[0]
+        return count
+
 
     def save_to_mirror_file(self):
-        if template_suffix not in self.prompt_path: raise EnvironmentError(self.prompt_path)
+        if template_suffix not in self.prompt_path:
+            raise ValueError(f"Prompt path must contain '{template_suffix}'")
+        
         prefix_index = self.prompt_path.find(template_suffix)
         self.new_path = self.prompt_path[:prefix_index] + "_rendered.pickle"
         pickle.dump(self, open(self.new_path,"wb"))
@@ -73,10 +82,27 @@ class RenderedPromptRecord():
 
         return token_counts
 
-    def __iter__(self):
+    def message_iter(self):
         """Iterator that yields each row in message_data as a dictionary."""
+        # Iterate over the rows of message_data
         for _, row in self.message_data.iterrows():
-            yield row.to_dict()  # Convert each row to a dictionary and yield it
+            yield row.to_dict()
+
+    def response_iter(self):
+        """Iterator that yields each row in response_data as a dictionary."""
+        # Iterate over the rows of response_data
+        for _, row in self.response_data.iterrows():
+            yield row.to_dict()
+
+    def merged_iter(self):
+        """Iterator that yields each row in message_data and response_data as a dictionary."""
+        # Join message_data and response_data on 'messageId'
+        merged_data = pd.merge(self.message_data, self.response_data, on="messageId", how="left")
+        # Fill NaN values in 'response' column with empty strings
+        merged_data["response"] = merged_data["response"].fillna("")
+        # Iterate over the rows of the merged DataFrame
+        for _, row in merged_data.iterrows():
+            yield row.to_dict()
 
 
     def __str__(self):
