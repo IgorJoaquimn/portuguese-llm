@@ -13,7 +13,7 @@ absl.flags.mark_flag_as_required("record_folder")
 
 def main(_):
     record_folder = FLAGS.record_folder
-    records_path = [record_folder + f for f in os.listdir(record_folder) if "_rendered.pickle" in f]
+    records_path = [record_folder + f for f in os.listdir(record_folder) if ".pickle" in f]
     print(records_path)
     records  = [RenderedPromptRecord.load_from_file_static(file) for file in records_path]
 

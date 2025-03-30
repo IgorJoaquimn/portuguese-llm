@@ -50,7 +50,6 @@ class LlmCaller():
             # Append all generated responses to the record
             for response in responses:
                 record.add_response(messageId, response)
-            break
         return record
 
 def main(_):
