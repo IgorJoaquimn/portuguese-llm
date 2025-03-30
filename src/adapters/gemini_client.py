@@ -5,7 +5,7 @@ from src.adapters.generic_client import GenericClient
 class GeminiClient(GenericClient):
     def __init__(self, api_key):
         """Initialize the Gemini client."""
-        client = genai.client(api_key = api_key)
+        client = genai.Client(api_key = api_key)
         super().__init__(api_key, client)
 
     def create(self, config, messages):

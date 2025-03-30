@@ -1,9 +1,10 @@
 import pickle
+import os
 import pandas as pd
 from token_count import TokenCount
 from uuid import uuid5,NAMESPACE_DNS
 
-template_suffix = ".tmpl"
+template_suffix = ".tmplt"
 
 class RenderedPromptRecord():
     def __init__(self,original_prompt,prompt_path):
@@ -53,10 +54,16 @@ class RenderedPromptRecord():
     def save_to_mirror_file(self):
         if template_suffix not in self.prompt_path:
             raise ValueError(f"Prompt path must contain '{template_suffix}'")
-        
-        prefix_index = self.prompt_path.find(template_suffix)
-        self.new_path = self.prompt_path[:prefix_index] + "_rendered.pickle"
+        # Create a new directory for rendered files
+        rendered_dir = "/".join(self.prompt_path.split("/")[:-1]) + "/rendered"
+        # Create the directory if it doesn't exist
+        os.makedirs(rendered_dir, exist_ok=True)
+        # Save the rendered prompt to a new file
+        prefix = rendered_dir + "/" 
+        suffix = self.prompt_path.split("/")[-1].replace(template_suffix, ".pickle")
+        self.new_path = prefix + suffix
         pickle.dump(self, open(self.new_path,"wb"))
+        assert os.path.exists(self.new_path), f"Failed to save file at {self.new_path}"
 
     @staticmethod
     def load_from_file_static(path):
