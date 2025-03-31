@@ -1,10 +1,11 @@
 import asyncio
-from src.adapters.default_adapter import GenericClient
+from src.adapters.generic_client import GenericClient
 from openai import AsyncOpenAI
 from openai import OpenAI
 
-class OpenaiClient(GenericClient):
-    def __init__(self, api_key,client):
+class OpenAIClient(GenericClient):
+    def __init__(self, api_key):
+        client = OpenAI(api_key=api_key)
         super().__init__(api_key, client)
 
     def create(self, config, messages):

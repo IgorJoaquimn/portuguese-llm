@@ -64,7 +64,7 @@ class PromptRenderGenerator():
         messages_list = []
         config_list = []
         trait_list = []
-        for trait_comb in self.traits_comb:
+        for trait_comb in tqdm(self.traits_comb):
             traits = self.trait_comb_to_dict(trait_comb)
             traits = self.enhance_traits(traits)
             messages, config= self.promptl.prompts.render(
@@ -85,7 +85,7 @@ class PromptRenderGenerator():
         print("Generating prompts from template",prompt_path)
         render = [
             self.generate_prompt_from_template(config + prompt_template) 
-            for config in tqdm(configs)
+            for config in configs
         ]
         messages_list, configs_list, trait_list = zip(*render)
         record = RenderedPromptRecord(prompt_template, prompt_path)
