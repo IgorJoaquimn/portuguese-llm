@@ -37,5 +37,4 @@ class GeminiClient(GenericClient):
         role = message.role
         for c in message.content:
             formatted_prompt += c.text + "\n"
-        print(formatted_prompt)
         return formatted_prompt

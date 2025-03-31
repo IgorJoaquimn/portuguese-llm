@@ -77,8 +77,14 @@ class RenderedPromptRecord():
         for _, row in self.message_data.iterrows():  # Iterate over DataFrame rows
             message = row["message"]
             model_name = row.get("model", None)  # Get model name if it exists in configs
+
+            if hasattr(message, "content") and message.content:
+                text = message.content[0].text  # Extract the actual text
+            else:
+                text = str(message)  # Fallback if message is not in expected format
+            
             tc = TokenCount(model_name=model_name)  # Initialize TokenCount with model
-            token_counts.append(tc.num_tokens_from_string(message))  # Compute token count
+            token_counts.append(tc.num_tokens_from_string(text))  # Compute token count
 
         return token_counts
 
