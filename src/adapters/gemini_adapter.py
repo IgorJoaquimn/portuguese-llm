@@ -1,15 +1,22 @@
 import asyncio
+import time
 import google.generativeai as genai
 from src.adapters.default_adapter import GenericClient
 
+# This is a wrapper for the Gemini API, which is a generative AI model by Google.
+# Should follow the rate limit of 15 requests per minute.
 class GeminiClient(GenericClient):
     def __init__(self, api_key, client):
         super().__init__(api_key, client)
+
 
     def create(self, config, messages):
         """Synchronous content generation."""
         prompt = self._format_messages(messages)
         response = self.client.generate_content(prompt, **config)
+        # Follow the rate limit of 15 requests per minute.
+        time.sleep(4)
+        # Check if the response contains candidates and parts
         if response.candidates and response.candidates[0].content.parts:
             return response.candidates[0].content.parts[0].text
         else:
