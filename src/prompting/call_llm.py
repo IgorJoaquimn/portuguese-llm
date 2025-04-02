@@ -37,7 +37,7 @@ class LlmCaller():
     def feed_into_llm(self, record, ntimes=1):
         self.record = record
         for row in self.record.message_iter(): 
-            print(f"Processing row with messageId:\t\t{row['messageId']}")
+            print(f"Processing row with messageId:\t\t\t{row['messageId']}")
             messageId = row["messageId"]
             # Check if the messageId already has responses
             response_count = record.count_responses(messageId)
@@ -51,7 +51,7 @@ class LlmCaller():
 
             message = row["message"]
             # Generate responses for each message 'ntimes' times
-            print(f"Generating {ntimes - response_count} responses for messageId \t{messageId}")
+            print(f"Generating {ntimes - response_count} responses for messageId \t\t{messageId}")
             responses = [ 
                 self.generate_one_response(config, message)
                 for i in range(ntimes - response_count)
