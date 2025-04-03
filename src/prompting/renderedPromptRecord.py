@@ -18,6 +18,8 @@ class RenderedPromptRecord():
         self.response_data = pd.DataFrame(columns=["messageId","response"])
         self.response_data["response"] = self.response_data["response"].astype(str)
 
+        self.udpipe_data = pd.DataFrame()
+
     def add_message(self,original_prompt,config,trait,message):
         message_id = uuid5(NAMESPACE_DNS, 
                            original_prompt + str(trait) + str(config)).int
@@ -44,6 +46,40 @@ class RenderedPromptRecord():
             [self.response_data, pd.DataFrame([response_record])], ignore_index=True
         )
         return self.response_data
+    
+    def add_udpipe(self,responseId, response,stats):
+        response_record = {
+            "responseId": responseId,
+            "udpipe_result": response,
+            **stats
+        }
+
+        self.set_udpipe_if_non_existant()
+        self.udpipe_data = pd.concat(
+            [self.udpipe_data, pd.DataFrame([response_record])], ignore_index=True
+        )
+        return self.udpipe_data
+
+    def generate_responseId(self):
+        # Generate a unique ID for the response
+        if self.response_data.empty:
+            return
+        # For each response, the UUID is the messageId + response
+        self.response_data["responseId"] = self.response_data["messageId"].astype(str) + self.response_data["response"].astype(str)
+        self.response_data["responseId"] = self.response_data["responseId"].apply(
+            lambda x: uuid5(NAMESPACE_DNS, x).int
+        )
+        return self.response_data
+
+    def set_udpipe_if_non_existant(self):
+        # Check if the udpipe data already exists
+        try: 
+            if not self.udpipe_data.empty:
+                return self.udpipe_data
+        except AttributeError:
+            # If udpipe_data is not defined, initialize it
+            self.udpipe_data = pd.DataFrame()
+            return self.udpipe_data
 
     def count_responses(self,messageId):
         # Count the number of responses for a given messageId
@@ -125,5 +161,7 @@ class RenderedPromptRecord():
             f"Prompt Path: {self.prompt_path}\n\n"
             f"Message Data:\n{self.message_data[['messageId','message_text']].to_string(index=False)}\n\n"
             f"Response Data:\n{self.response_data.to_string(index=False)}"
+            f"\n\nUDPipe Data:\n{self.udpipe_data.to_string(index=False)}"
+
         )
 
