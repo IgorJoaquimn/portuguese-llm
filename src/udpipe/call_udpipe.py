@@ -56,7 +56,7 @@ class UdpipeCaller():
             responseId = row["responseId"]
             print(f"Processing row with responseId:\t\t\t{responseId}")
             # Check if the responseId already has udpipe called 
-            if "udpipe_result" in row:
+            if self.record.count_udpipe(responseId) > 0:
                 print(f"Already generated udpipe for responseId \t{responseId}\n")
                 continue
 
@@ -72,17 +72,13 @@ class UdpipeCaller():
             self.record.add_udpipe(responseId, response,stats)
 
             print(f"Done generating responses for responseId \t{responseId}\n")
-            print(f"Response:\t\t\t{response}")
-            break
         return self.record
-
-
 
     def handle_sigint(self,signal_received, frame):
         signal_str = signal.Signals(signal_received).name
         print(f"\n{signal_str} detected! Running cleanup function...")
         # Perform any cleanup here
-        #self.record.save_to_mirror_file()  # Save the record to a file
+        self.record.save_to_mirror_file()  # Save the record to a file
         sys.exit(0)  # Exit the program gracefully
 
 def main(_):
@@ -93,8 +89,7 @@ def main(_):
 
     caller = UdpipeCaller(URL)
     record = caller.feed_into_udpipe(record,generate_stats=False)
-    #record.save_to_mirror_file()
-    print(record)
+    record.save_to_mirror_file()
 
 
 if __name__ == '__main__':

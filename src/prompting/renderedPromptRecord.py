@@ -60,6 +60,15 @@ class RenderedPromptRecord():
         )
         return self.udpipe_data
 
+    def count_udpipe(self,responseId):
+        self.set_udpipe_if_non_existant()
+        # Check if the udpipe data is empty
+        if self.udpipe_data.empty:
+            return 0
+        # Count the number of udpipe results for a given responseId
+        count = self.udpipe_data[self.udpipe_data["responseId"] == responseId].shape[0]
+        return count
+
     def generate_responseId(self):
         # Generate a unique ID for the response
         if self.response_data.empty:
