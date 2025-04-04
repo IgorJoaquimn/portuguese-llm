@@ -35,6 +35,7 @@ class UdpipeCaller():
             'model': model,
         }
         signal.signal(signal.SIGTERM, self.handle_sigint)
+        signal.signal(signal.SIGINT, self.handle_sigint)
 
     def generate_one_response(self,message):
         request_param = self.data_metadata.copy()
@@ -52,15 +53,29 @@ class UdpipeCaller():
     def feed_into_udpipe(self, record, generate_stats=True):
         self.record = record
         self.record.generate_responseId()
-        for row in self.record.response_iter(): 
+        records_all = len(self.record.response_data)
+        tabs = "\t" * 2
+        print(f"Total records to process:{tabs}{records_all}")
+        for i,row in enumerate(self.record.response_iter()): 
             responseId = row["responseId"]
-            print(f"Processing row with responseId:\t\t\t{responseId}")
+            print(f"[{i:04d}/{records_all}]Processing row with responseId:{tabs}{responseId}")
             # Check if the responseId already has udpipe called 
             if self.record.count_udpipe(responseId) > 0:
-                print(f"Already generated udpipe for responseId \t{responseId}\n")
+                print(f"Already generated udpipe for responseId \t\t{responseId}\n")
+                continue
+
+            if("response" not in row):
+                print(f"Response not found for responseId \t\t{responseId}\n")
                 continue
 
             message = row["response"]
+
+            if(message is None):
+                print(f"Response is None for responseId \t\t{responseId}\n")
+                continue
+            if(message == "" or message == " "):
+                print(f"Response is empty for responseId \t\t{responseId}\n")
+                continue
             # Call udpipe API
             response = self.generate_one_response(message)
 
@@ -71,7 +86,7 @@ class UdpipeCaller():
 
             self.record.add_udpipe(responseId, response,stats)
 
-            print(f"Done generating responses for responseId \t{responseId}\n")
+            print(f"Done generating responses for responseId \t\t{responseId}\n")
         return self.record
 
     def handle_sigint(self,signal_received, frame):
