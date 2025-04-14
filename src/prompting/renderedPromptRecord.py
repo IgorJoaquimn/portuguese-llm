@@ -145,12 +145,22 @@ class RenderedPromptRecord():
         for _, row in self.response_data.iterrows():
             yield row.to_dict()
 
-    def merged_iter(self):
-        """Iterator that yields each row in message_data and response_data as a dictionary."""
+    def get_merged_data(self):
+        """Returns the merged data as a DataFrame."""
         # Join message_data and response_data on 'messageId'
         merged_data = pd.merge(self.message_data, self.response_data, on="messageId", how="left")
+        # Join response_data and udpipe_data on 'responseId'
+        merged_data = pd.merge(merged_data, self.udpipe_data, on="responseId", how="left")
         # Fill NaN values in 'response' column with empty strings
         merged_data["response"] = merged_data["response"].fillna("")
+        # Fill NaN values in 'udpipe_result' column with empty strings
+        merged_data["udpipe_result"] = merged_data["udpipe_result"].fillna("")
+        return merged_data
+
+    def merged_iter(self):
+        """Iterator that yields each row in message_data and response_data as a dictionary."""
+        # Get the merged data
+        merged_data = self.get_merged_data()
         # Iterate over the rows of the merged DataFrame
         for _, row in merged_data.iterrows():
             yield row.to_dict()
