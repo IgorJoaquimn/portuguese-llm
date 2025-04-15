@@ -1,0 +1,6 @@
+nohup: ignoring input
+Top words for target group [centro-oestina] compared to unmarked group [sudestina]:
+goiano: 4.10
+vermelha: 2.99
+caipira: 2.10
+simples: 2.06

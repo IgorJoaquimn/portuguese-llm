@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [nordestina] compared to unmarked group [empty]:
+bom: 51.08
+boa: 37.56
+justo: 37.47
+igualitário: 34.86
+justo igualitário: 34.84
+melhor: 31.87
+fácil: 31.69
+binárie: 30.46
+simples: 28.59
+feliz: 21.27
+constante: 20.43
+batalhadora: 20.31
+duro: 20.14
+quentinho: 19.99
+viva: 19.51
+morena: 19.27
+preto: 19.08
+cheia: 17.42
+mesmas: 16.89
+honesto: 16.84

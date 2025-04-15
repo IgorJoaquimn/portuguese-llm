@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [indígena] compared to unmarked group [branca]:
+floresta: 6.53
+povo: 5.86
+cabelos noite: 5.61
+aldeia: 5.48
+língua: 5.46
+ancestrais: 5.34
+espíritos: 5.01
+mata: 4.66
+sabedoria: 4.47
+noite: 4.24
+terra: 3.99
+olhos sabedoria: 3.95
+espíritos floresta: 3.94
+filhos netos: 3.92
+netos: 3.92
+harmonia natureza: 3.87
+sabedoria ancestrais: 3.85
+cestos: 3.85
+harmonia: 3.82
+natureza: 3.71

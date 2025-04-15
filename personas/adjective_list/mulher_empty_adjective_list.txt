@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [mulher] compared to unmarked group [empty]:
+bom: 40.81
+justo: 38.59
+igualitário: 34.29
+justo igualitário: 33.94
+binárie: 33.53
+melhor: 30.00
+boa: 27.32
+constante: 26.47
+fácil: 25.00
+simples: 21.66
+feliz: 21.45
+binária: 21.01
+batalhadora: 18.04
+neutro binária: 17.96
+neutro: 17.91
+mesmas: 17.39
+duro: 17.11
+inclusivo: 16.58
+novos: 16.45
+preto: 16.21

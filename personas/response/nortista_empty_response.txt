@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [nortista] compared to unmarked group [empty]:
+gente: 96.84
+pra: 87.56
+aqui: 67.20
+chamo: 54.64
+adoro: 51.55
+cresci: 48.89
+chamar: 46.00
+pode chamar: 44.94
+sei: 42.23
+bom: 41.53
+sabe: 41.26
+terra: 40.87
+nasci: 40.52
+orgulho: 39.68
+amo: 39.65
+sinto: 39.08
+aprendi: 38.15
+luto: 37.08
+tudo: 35.93
+gosto: 35.78

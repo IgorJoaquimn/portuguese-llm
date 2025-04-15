@@ -1,0 +1,20 @@
+nohup: ignoring input
+Top words for target group [sulista] compared to unmarked group [sudestina]:
+sul: 6.25
+chimarrão: 4.30
+rio grande: 3.71
+gaúcha: 3.68
+grande sul: 3.48
+gaúcho: 2.87
+tchê: 2.79
+aqui: 2.62
+sulista: 2.57
+porto alegre: 2.44
+churrasco: 2.36
+terra: 2.32
+criado aqui: 2.25
+igreja: 2.20
+kaingang: 2.15
+bom churrasco: 2.10
+bahia: 2.03
+deixe apresentar: 2.00

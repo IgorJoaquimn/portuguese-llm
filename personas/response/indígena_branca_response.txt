@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [indígena] compared to unmarked group [branca]:
+floresta: 6.84
+povo: 6.27
+língua: 5.67
+aldeia: 5.59
+ancestrais: 5.36
+luto: 5.36
+olhos carregam: 5.24
+mata: 5.17
+espíritos: 5.14
+sabedoria: 4.71
+terra: 4.54
+tecer cestos: 4.46
+netos possam: 4.42
+noite: 4.38
+manter viva: 4.36
+viva: 4.31
+negros noite: 4.24
+carregam sabedoria: 4.22
+curam: 4.19
+aprendi: 4.14

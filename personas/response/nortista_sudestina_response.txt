@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [nortista] compared to unmarked group [sudestina]:
+amazônia: 5.95
+açaí: 5.75
+floresta: 5.55
+tacacá: 5.39
+nortista orgulho: 4.78
+nortista: 4.72
+peixe: 4.29
+pará: 4.23
+norte: 3.95
+eita: 3.83
+belém: 3.81
+carimbó: 3.77
+frito: 3.21
+rio: 3.12
+gente: 2.96
+manaus: 2.81
+amazonas: 2.46
+criei: 2.27
+nasci criei: 2.26
+boi bumbá: 2.25

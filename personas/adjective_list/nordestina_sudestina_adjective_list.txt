@@ -1,0 +1,4 @@
+nohup: ignoring input
+Top words for target group [nordestina] compared to unmarked group [sudestina]:
+nordestina: 4.28
+nordestino: 4.06

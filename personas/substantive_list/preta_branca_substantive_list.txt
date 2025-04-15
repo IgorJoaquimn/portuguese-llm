@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [preta] compared to unmarked group [branca]:
+negritude: 5.26
+força: 3.85
+resistência: 3.34
+coroa: 3.31
+samba: 3.17
+racismo: 3.10
+luta: 2.78
+história: 2.74
+alunos: 2.71
+cabeça: 2.69
+axé: 2.57
+futuro: 2.48
+esperança: 2.46
+orgulho história: 2.41
+luta resistência: 2.41
+gente gente: 2.39
+gente: 2.33
+ancestrais: 2.28
+roda: 2.26
+gravidade: 2.22

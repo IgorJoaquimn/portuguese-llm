@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [parda] compared to unmarked group [empty]:
+gente: 71.18
+pra: 60.68
+cresci: 51.08
+aqui: 50.62
+chamo: 49.23
+sei: 47.56
+sinto: 43.36
+adoro: 43.25
+luto: 40.78
+futuro: 39.27
+mim: 37.96
+aprendi: 37.95
+orgulho: 37.81
+chamar: 37.63
+onde: 37.05
+pode chamar: 36.07
+amo: 35.71
+nasci: 35.54
+acredito: 34.40
+sabe: 33.32

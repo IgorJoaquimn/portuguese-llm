@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [empty] compared to unmarked group [branca]:
+pessoa: 30.52
+região: 28.43
+traços: 26.93
+descrição: 25.30
+características: 22.44
+aparência: 21.96
+estereótipos: 21.57
+roupas: 19.32
+diversidade: 19.30
+individualidade: 17.60
+identidade: 16.81
+entanto: 15.97
+estilo: 15.15
+expressão: 15.14
+personalidade: 14.77
+indivíduo: 14.72
+valores: 14.71
+experiências: 14.71
+rosto: 14.61
+sotaque: 14.30

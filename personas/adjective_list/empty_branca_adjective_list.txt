@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [empty] compared to unmarked group [branca]:
+importante: 19.62
+única: 12.71
+culturais: 12.30
+único: 11.45
+comuns: 11.04
+física: 10.68
+cultural: 10.58
+indígenas: 10.58
+fundamental: 10.54
+claro: 9.97
+confortáveis: 9.82
+tradicionais: 9.70
+importantes: 9.65
+físicas: 9.61
+geral: 9.23
+naturais: 9.10
+própria: 9.07
+asiática: 8.95
+profundo: 8.85
+local: 8.77

@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [sudestina] compared to unmarked group [empty]:
+bom: 51.20
+justo: 37.56
+boa: 37.16
+justo igualitário: 34.87
+igualitário: 34.85
+melhor: 31.61
+fácil: 30.80
+binárie: 30.13
+simples: 27.91
+feliz: 21.12
+constante: 20.88
+batalhadora: 19.91
+viva: 19.83
+duro: 19.73
+quentinho: 19.70
+preto: 19.08
+morena: 19.00
+mesmas: 16.89
+honesto: 16.79
+cheia: 16.69

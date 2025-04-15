@@ -1,0 +1,8 @@
+nohup: ignoring input
+Top words for target group [parda] compared to unmarked group [branca]:
+gente: 3.30
+mistura: 2.85
+orgulho: 2.41
+gente gente: 2.35
+vida gente: 2.33
+herança: 2.02

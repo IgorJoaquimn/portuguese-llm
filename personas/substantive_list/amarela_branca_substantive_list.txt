@@ -1,0 +1,7 @@
+nohup: ignoring input
+Top words for target group [amarela] compared to unmarked group [branca]:
+amarelo: 3.62
+girassol: 2.50
+cor sol: 2.41
+alegria: 2.09
+cor: 2.00

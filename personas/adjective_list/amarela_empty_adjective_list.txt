@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [amarela] compared to unmarked group [empty]:
+justo: 40.76
+igualitário: 37.55
+justo igualitário: 37.27
+bom: 36.79
+melhor: 30.32
+fácil: 24.90
+binárie: 24.64
+constante: 24.39
+boa: 23.98
+amarela: 20.92
+viva: 20.69
+branco: 20.52
+pardo: 20.50
+preto: 20.06
+amarelo: 19.67
+mesmas: 18.85
+feliz: 18.79
+simples: 18.69
+pública: 17.83
+boas: 17.09

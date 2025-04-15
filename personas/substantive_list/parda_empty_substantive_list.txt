@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [parda] compared to unmarked group [empty]:
+gente: 71.81
+futuro: 39.52
+orgulho: 37.24
+mundo: 33.95
+terra: 33.40
+força: 33.13
+nome: 32.05
+avó: 31.56
+mãe: 30.16
+vezes: 29.72
+esperança: 28.12
+avós: 27.65
+cara: 27.58
+coração: 26.66
+ancestrais: 26.32
+pai: 26.23
+povo: 25.49
+luto: 25.28
+importância: 24.89
+gente gente: 24.57

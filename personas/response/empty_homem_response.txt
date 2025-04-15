@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [empty] compared to unmarked group [homem]:
+pode: 34.52
+região: 28.63
+pessoa: 25.69
+traços: 25.43
+podem: 24.88
+descrição: 23.65
+importante: 22.32
+características: 21.38
+aparência: 21.08
+estereótipos: 20.77
+indígenas: 19.63
+apenas: 19.15
+diversidade: 18.57
+ume: 17.82
+identidade: 17.47
+descrever: 17.38
+roupas: 17.07
+lembrar: 17.06
+individualidade: 17.03
+única: 16.09

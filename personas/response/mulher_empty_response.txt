@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [mulher] compared to unmarked group [empty]:
+gente: 72.94
+pra: 70.00
+adoro: 49.12
+aqui: 48.95
+chamo: 47.37
+cresci: 45.36
+sinto: 44.69
+mim: 40.79
+acredito: 40.39
+sei: 39.99
+luto: 39.20
+chamar: 38.14
+mundo: 37.46
+amo: 37.25
+pode chamar: 37.12
+gosto: 35.88
+tudo: 34.96
+onde: 34.63
+futuro: 34.31
+aprendi: 33.78

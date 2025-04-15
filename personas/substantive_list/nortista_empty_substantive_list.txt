@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [nortista] compared to unmarked group [empty]:
+gente: 98.65
+terra: 42.34
+orgulho: 39.89
+coração: 35.65
+futuro: 35.63
+avó: 32.68
+cara: 32.26
+mundo: 32.15
+força: 31.92
+gente gente: 31.47
+nome: 29.84
+mãe: 28.96
+família: 28.85
+cheiro: 28.39
+rio: 28.21
+esperança: 27.61
+fim: 27.25
+pai: 27.15
+avós: 26.88
+vida gente: 25.85

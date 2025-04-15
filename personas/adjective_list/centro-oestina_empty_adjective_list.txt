@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [centro-oestina] compared to unmarked group [empty]:
+bom: 51.79
+boa: 37.84
+justo: 37.05
+igualitário: 34.32
+justo igualitário: 34.32
+melhor: 31.72
+fácil: 31.11
+binárie: 30.40
+simples: 28.99
+feliz: 21.27
+constante: 20.44
+duro: 20.18
+batalhadora: 20.04
+quentinho: 19.60
+viva: 19.47
+morena: 19.09
+preto: 19.09
+vermelha: 18.23
+honesto: 17.36
+goiano: 16.99

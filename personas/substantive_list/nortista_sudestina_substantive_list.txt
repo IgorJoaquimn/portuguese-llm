@@ -1,0 +1,15 @@
+nohup: ignoring input
+Top words for target group [nortista] compared to unmarked group [sudestina]:
+floresta: 5.53
+tacacá: 5.23
+açaí: 4.98
+rio: 4.91
+peixe: 4.29
+carimbó: 3.81
+gente: 2.92
+norte: 2.70
+boi: 2.30
+boi bumbá: 2.26
+bumbá: 2.26
+margens: 2.16
+cheiro: 2.08

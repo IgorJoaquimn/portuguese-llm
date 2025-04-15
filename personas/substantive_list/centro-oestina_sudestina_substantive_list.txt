@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [centro-oestina] compared to unmarked group [sudestina]:
+cerrado: 5.54
+pequi: 4.54
+tereré: 4.08
+viola: 3.92
+gente: 3.57
+arroz pequi: 3.50
+arroz: 3.38
+pôr: 3.16
+pôr sol: 3.16
+coração: 3.00
+centro oeste: 2.47
+oeste: 2.46
+centro: 2.39
+empadão: 2.37
+terra: 2.36
+roça: 2.25
+gado: 2.16
+cheiro terra: 2.15
+sertanejo: 2.14
+sol cerrado: 1.97

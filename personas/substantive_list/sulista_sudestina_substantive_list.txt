@@ -1,0 +1,7 @@
+nohup: ignoring input
+Top words for target group [sulista] compared to unmarked group [sudestina]:
+chimarrão: 4.28
+sul: 3.17
+churrasco: 2.36
+terra: 2.30
+igreja: 2.22

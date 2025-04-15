@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [preta] compared to unmarked group [empty]:
+justo: 42.30
+igualitário: 39.24
+justo igualitário: 38.99
+bom: 36.13
+melhor: 30.89
+fácil: 25.03
+constante: 24.83
+binárie: 24.55
+boa: 23.00
+preto: 22.58
+viva: 20.73
+branco: 20.47
+pardo: 20.45
+mesmas: 20.04
+pública: 19.43
+simples: 18.27
+feliz: 18.26
+preta: 18.25
+amarela: 17.98
+crespo: 17.10

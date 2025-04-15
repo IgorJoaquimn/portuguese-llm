@@ -1,0 +1,11 @@
+nohup: ignoring input
+Top words for target group [mulher] compared to unmarked group [homem]:
+mulher: 5.70
+filha: 4.52
+avó: 4.37
+mulher orgulho: 3.84
+professora: 2.67
+mulheres: 2.20
+machismo: 2.16
+força mulher: 2.03
+garra: 1.96

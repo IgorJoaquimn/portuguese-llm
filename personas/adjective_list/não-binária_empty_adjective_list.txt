@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [não-binária] compared to unmarked group [empty]:
+bom: 39.81
+justo: 38.65
+binárie: 38.37
+igualitário: 34.11
+justo igualitário: 33.71
+constante: 28.46
+melhor: 28.44
+boa: 26.86
+fácil: 24.55
+binária: 24.20
+feliz: 22.22
+simples: 21.31
+neutro binária: 20.53
+neutro: 20.44
+inclusivo: 18.55
+autêntique: 17.82
+livres: 17.40
+confortável: 16.65
+duro: 16.59
+preto: 16.31

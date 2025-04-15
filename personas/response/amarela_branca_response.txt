@@ -1,0 +1,22 @@
+nohup: ignoring input
+Top words for target group [amarela] compared to unmarked group [branca]:
+amarela: 6.05
+amarelo: 5.93
+japão: 4.36
+japonesa: 3.25
+sol: 2.84
+mulher amarela: 2.72
+girassol: 2.64
+viu: 2.52
+pode chamar: 2.15
+cor amarela: 2.15
+orientais: 2.15
+alegria: 2.14
+chamar: 2.09
+sol pode: 2.07
+puxados: 2.06
+cor sol: 2.06
+arretada: 2.01
+coração: 2.00
+oriental: 1.98
+eita: 1.97
