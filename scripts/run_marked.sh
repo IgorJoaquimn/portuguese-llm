@@ -1,0 +1,35 @@
+#!/bin/bash
+# This script runs the masked personas generation process
+
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=preta --unmarked_name=branca --text_col=response & > personas/preta_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=preta --unmarked_name=empty --text_col=response & > personas/preta_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=parda --unmarked_name=branca --text_col=response & > personas/parda_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=parda --unmarked_name=empty --text_col=response & > personas/parda_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=branca --unmarked_name=branca --text_col=response & > personas/branca_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=branca --unmarked_name=empty --text_col=response & > personas/branca_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=amarela --unmarked_name=branca --text_col=response & > personas/amarela_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=amarela --unmarked_name=empty --text_col=response & > personas/amarela_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=indígena --unmarked_name=branca --text_col=response & > personas/indígena_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=indígena --unmarked_name=empty --text_col=response & > personas/indígena_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=empty --unmarked_name=branca --text_col=response & > personas/empty_branca_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=raca --target_name=empty --unmarked_name=empty --text_col=response & > personas/empty_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=homem --unmarked_name=homem --text_col=response & > personas/homem_homem_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=homem --unmarked_name=empty --text_col=response & > personas/homem_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=mulher --unmarked_name=homem --text_col=response & > personas/mulher_homem_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=mulher --unmarked_name=empty --text_col=response & > personas/mulher_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=não-binária --unmarked_name=homem --text_col=response & > personas/não-binária_homem_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=não-binária --unmarked_name=empty --text_col=response & > personas/não-binária_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=empty --unmarked_name=homem --text_col=response & > personas/empty_homem_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=genero --target_name=empty --unmarked_name=empty --text_col=response & > personas/empty_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=nortista --unmarked_name=sudestina --text_col=response & > personas/nortista_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=nortista --unmarked_name=empty --text_col=response & > personas/nortista_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=nordestina --unmarked_name=sudestina --text_col=response & > personas/nordestina_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=nordestina --unmarked_name=empty --text_col=response & > personas/nordestina_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=sulista --unmarked_name=sudestina --text_col=response & > personas/sulista_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=sulista --unmarked_name=empty --text_col=response & > personas/sulista_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=sudestina --unmarked_name=sudestina --text_col=response & > personas/sudestina_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=sudestina --unmarked_name=empty --text_col=response & > personas/sudestina_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=centro-oestina --unmarked_name=sudestina --text_col=response & > personas/centro-oestina_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=centro-oestina --unmarked_name=empty --text_col=response & > personas/centro-oestina_empty_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=empty --unmarked_name=sudestina --text_col=response & > personas/empty_sudestina_response.txt
+nohup python3 -u src/masked/masked_personas.py --input_file=data/gemini_merged_udpipe.parquet --target_col=regiao --target_name=empty --unmarked_name=empty --text_col=response & > personas/empty_empty_response.txt

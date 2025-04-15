@@ -23,6 +23,9 @@ def main(_):
 
     dfs["messageId"] = dfs["messageId"].astype(str)
     dfs["responseId"] = dfs["responseId"].astype(str)
+    analysis_df = pd.json_normalize(df['trait'])
+    dfs = pd.concat([dfs, analysis_df], axis=1)
+    dfs.drop(columns=['trait',"message_text"], inplace=True)
     dfs.to_parquet(
         os.path.join(record_folder, "merged_data.parquet"),
         index=False,

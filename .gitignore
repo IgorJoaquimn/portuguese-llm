@@ -1,3 +1,4 @@
 envs.py
 __pycache__/
 prompts/rendered/*
+local/
