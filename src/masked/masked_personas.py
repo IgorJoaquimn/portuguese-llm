@@ -123,9 +123,9 @@ def main(_):
         raise ValueError(f"Target name {target_name} not found in the column {target_col}")
     if unmarked_name not in df[target_col].unique():
         raise ValueError(f"Unmarked name {unmarked_name} not found in the column {target_col}")
-    
+    if "model" not in df.columns:
+        raise ValueError(f"Column 'model' not found in the input file")
     df = df[df["model"] == model_name]
-
     target = df[df[target_col] == target_name][text_col].tolist()
     unmarked = df[df[target_col] == unmarked_name][text_col].tolist()
     prior = df[~df[target_col].isin([target_name, unmarked_name])][text_col].tolist()
