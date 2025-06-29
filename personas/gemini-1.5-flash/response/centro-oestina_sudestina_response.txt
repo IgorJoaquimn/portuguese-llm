@@ -1,21 +1,21 @@
 Top words for target group [centro-oestina] compared to unmarked group [sudestina]:
-cerrado: 17.12
-centro: 15.55
-mato: 8.10
+cerrado: 17.14
+centro: 15.56
+mato: 8.11
 oeste: 7.97
-mato grosso: 7.41
 goiás: 7.18
-sol cerrado: 7.15
 goiânia: 6.92
-grosso: 6.67
+grosso: 6.69
 goiano: 6.47
-sertaneja: 6.18
+sertaneja: 6.19
 brasília: 5.99
-música sertaneja: 5.79
-centro oeste: 5.70
-grosso sul: 5.59
-escaldante cerrado: 5.07
 xavante: 4.88
-campo: 3.94
-botas couro: 3.27
-terra: 3.20
+campo: 3.95
+terra: 3.32
+alice: 3.15
+raiz: 3.04
+paisagem: 2.99
+ipê: 2.93
+atlético: 2.66
+natureza: 2.49
+38: 2.49

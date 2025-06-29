@@ -1,21 +1,21 @@
 Top words for target group [parda] compared to unmarked group [branca]:
-parda: 10.75
-pardo: 7.51
-força: 7.01
-indígena africana: 6.87
-salpicado sardas: 5.90
-quase preto: 5.68
-escuro quase: 5.52
-salpicado: 5.34
-africana: 5.31
-crespos: 5.05
-lua: 4.94
-castanho escuro: 4.92
-tom: 4.87
-olhos grandes: 4.86
-café leite: 4.80
-negros: 4.75
-grossos: 4.69
-tom rico: 4.63
-escuro: 4.61
-terra: 4.44
+parda: 10.79
+força: 7.73
+pardo: 7.56
+salpicado: 5.47
+africana: 5.43
+crespos: 5.27
+tom: 5.17
+lua: 5.14
+terra: 5.14
+negros: 5.06
+grossos: 4.98
+escuro: 4.86
+cacheados: 4.57
+isabela: 4.43
+resiliência: 4.42
+nordestino: 4.40
+oval: 4.35
+leite: 4.30
+escuros: 4.15
+indígena: 4.15

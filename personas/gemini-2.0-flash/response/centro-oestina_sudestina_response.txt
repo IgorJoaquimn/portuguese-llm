@@ -1,21 +1,21 @@
 Top words for target group [centro-oestina] compared to unmarked group [sudestina]:
-centro: 25.56
-arroz: 13.42
+centro: 25.57
+arroz: 13.43
 mato: 13.09
-campo: 12.20
+campo: 12.21
 sertaneja: 11.89
 grosso: 10.58
 cerrado: 9.99
-música sertaneja: 9.60
-coração brasil: 9.50
-sol forte: 8.96
-vermelha: 8.68
+vermelha: 8.69
 viola: 8.67
-forte: 8.50
-céu: 8.46
-sol: 8.44
-raiz: 8.35
-terra vermelha: 8.22
-agronegócio: 8.02
-botas: 7.61
-vastidão: 7.61
+forte: 8.56
+sol: 8.51
+céu: 8.47
+raiz: 8.36
+agronegócio: 8.03
+vastidão: 7.63
+botas: 7.63
+coração: 7.53
+terra: 7.48
+carne: 6.96
+sertanejo: 6.86

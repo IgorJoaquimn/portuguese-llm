@@ -1,21 +1,21 @@
 Top words for target group [nortista] compared to unmarked group [sudestina]:
-floresta: 12.34
-norte: 10.47
-nordestino: 7.07
+floresta: 12.37
+norte: 10.48
+nordestino: 7.12
 belém: 6.79
 paraense: 6.28
-porto alegre: 6.27
-nordestina: 5.97
-amazônia: 5.69
+nordestina: 6.01
+amazônia: 5.70
 pará: 5.63
-rio: 5.51
-açaí: 5.49
-nordeste: 5.18
-belém pará: 5.10
-alegre: 5.09
+rio: 5.55
+açaí: 5.50
+nordeste: 5.21
+alegre: 5.10
 amazônica: 4.86
-norte brasil: 4.48
-porto: 3.91
-olhos azuis: 3.83
-sol nordeste: 3.81
-negro: 3.57
+porto: 3.93
+negro: 3.58
+gaúcho: 3.50
+pesca: 3.47
+azuis: 3.36
+sertão: 3.29
+seca: 3.26

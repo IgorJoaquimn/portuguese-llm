@@ -1,21 +1,21 @@
 Top words for target group [nordestina] compared to unmarked group [sudestina]:
 nordeste: 27.07
-nordestina: 26.79
+nordestina: 26.80
 nordestino: 17.74
 sertão: 16.15
 forró: 15.21
-cultura nordestina: 12.65
 baião: 12.26
-fé: 12.05
+fé: 12.04
 alegria: 11.66
 sol: 10.88
-nordestina brasileira: 10.70
 maracatu: 10.16
-seca: 9.60
+seca: 9.59
 tapioca: 9.58
-povo nordestino: 9.44
 nordestinas: 9.11
 força: 8.97
-parda nordestina: 8.97
-preta nordestina: 8.47
 caatinga: 8.23
+forte: 8.10
+acarajé: 8.01
+nordestinos: 7.65
+povo: 7.52
+bahia: 7.14

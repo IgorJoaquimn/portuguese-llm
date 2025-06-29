@@ -1,21 +1,21 @@
 Top words for target group [amarela] compared to unmarked group [branca]:
-ascendência: 16.74
+ascendência: 16.77
 amarelo: 14.31
-olhos amendoados: 14.23
-amendoados: 13.06
-brasileira: 12.71
-pessoas ascendência: 11.84
-termo: 10.77
+amendoados: 13.08
+brasileira: 12.77
+termo: 10.78
 asiática: 10.47
 refere: 10.40
-asiáticos: 10.37
+asiáticos: 10.38
 japonesa: 10.21
 amarelado: 8.87
-leste: 8.74
-cabelo liso: 8.47
-pele tom: 8.03
-cor: 7.95
-referir: 7.80
-liso escuro: 7.78
+leste: 8.75
+cor: 7.99
+referir: 7.81
 descendente: 7.49
-contexto brasileiro: 7.46
+dourado: 7.45
+puxados: 7.11
+mistura: 7.06
+areia: 6.74
+nacionalidade: 6.60
+brasileiro: 6.52

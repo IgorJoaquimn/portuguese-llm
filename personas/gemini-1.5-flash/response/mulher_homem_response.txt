@@ -1,21 +1,21 @@
 Top words for target group [mulher] compared to unmarked group [homem]:
-mulher: 25.72
-vestido: 16.02
-coque: 15.54
-mulheres: 14.67
-32: 14.28
-32 anos: 14.13
-presos coque: 13.51
-usava vestido: 13.49
-avó: 13.10
-iara: 12.85
-filha: 12.68
-cabelos longos: 11.98
-dentes brancos: 11.81
-lisos: 11.39
-usa vestido: 11.09
-presos: 11.04
-elegância: 11.01
-coque alto: 10.97
-longos: 10.83
-brasileira: 10.64
+mulher: 25.81
+vestido: 16.11
+coque: 15.66
+mulheres: 14.72
+32: 14.30
+avó: 13.20
+iara: 12.99
+filha: 12.75
+lisos: 11.43
+presos: 11.15
+elegância: 11.06
+longos: 10.91
+brasileira: 10.74
+coloridas: 10.72
+força: 10.67
+colar: 10.61
+iracema: 10.53
+delicados: 10.38
+flores: 10.35
+frouxo: 10.25

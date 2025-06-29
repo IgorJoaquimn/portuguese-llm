@@ -1,21 +1,21 @@
 Top words for target group [indígena] compared to unmarked group [branca]:
-indígena: 38.20
-povo: 28.77
-indígenas: 28.57
+indígena: 38.22
+povo: 28.79
+indígenas: 28.59
 língua: 25.89
-povos: 23.66
-natureza: 21.50
-ancestrais: 20.85
-povos indígenas: 20.77
-adornos: 20.35
+povos: 23.67
+natureza: 21.52
+ancestrais: 20.86
+adornos: 20.36
 rituais: 19.28
-sabedoria: 19.03
-terras: 18.15
+sabedoria: 19.04
+terras: 18.16
 penas: 17.10
 floresta: 16.86
 espiritualidade: 16.38
 plantas: 16.31
-conexão: 16.25
-sementes: 16.20
+conexão: 16.26
+sementes: 16.21
 direitos: 15.27
 ancestral: 15.23
+terra: 15.00

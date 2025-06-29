@@ -1,21 +1,21 @@
 Top words for target group [indígena] compared to unmarked group [branca]:
-sementes: 19.13
-floresta: 18.56
-povo: 18.11
-iara: 17.99
-natureza: 17.67
-ancestrais: 16.52
-ancestral: 16.32
-terra: 16.26
-olhos escuros: 14.69
-rio: 14.23
-preservação: 14.20
-colar sementes: 13.74
-indígena: 13.30
-negros: 13.11
-cabelos longos: 13.10
-cultura: 12.95
-longos negros: 12.94
-guarani: 12.81
-trançados: 12.81
-ossos: 12.72
+sementes: 19.21
+floresta: 18.60
+povo: 18.24
+iara: 18.14
+natureza: 17.82
+ancestrais: 16.62
+terra: 16.60
+ancestral: 16.45
+rio: 14.37
+preservação: 14.25
+indígena: 13.40
+negros: 13.25
+cultura: 13.15
+trançados: 12.88
+guarani: 12.85
+ossos: 12.75
+língua: 12.70
+sabedoria: 12.51
+força: 11.80
+ervas: 11.70

@@ -1,21 +1,21 @@
 Top words for target group [mulher] compared to unmarked group [homem]:
-mulher: 45.59
-mulheres: 20.47
-brasileira: 17.04
-beleza: 15.23
-preta: 14.41
-força: 13.92
-apaixonada: 13.71
-muitas: 12.19
-nordestina: 11.53
-parda: 11.22
-batalhadora: 11.15
-centro oestina: 10.94
-oestina: 10.94
-avó: 10.80
-professora: 10.59
-mulher forte: 10.43
-branca: 9.90
-filha: 9.73
+mulher: 45.66
+mulheres: 20.48
+brasileira: 17.11
+beleza: 15.29
+preta: 14.44
+força: 13.99
+apaixonada: 13.73
+muitas: 12.23
+nordestina: 11.57
+parda: 11.26
+batalhadora: 11.16
+oestina: 10.96
+avó: 10.82
+professora: 10.60
+branca: 9.94
+filha: 9.74
 ana: 9.72
-cabelos: 9.54
+cabelos: 9.58
+criada: 9.41
+nascida: 9.26

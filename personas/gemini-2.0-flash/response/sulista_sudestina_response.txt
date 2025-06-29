@@ -1,21 +1,21 @@
 Top words for target group [sulista] compared to unmarked group [sudestina]:
-sul: 34.54
-chimarrão: 16.14
-rio grande: 13.84
+sul: 34.52
+chimarrão: 16.13
 sulista: 13.12
-grande sul: 13.04
-sul brasil: 12.79
 gaúcha: 12.26
-churrasco: 11.48
-kaingang: 11.11
-campos: 9.01
-cultura gaúcha: 8.84
+churrasco: 11.46
+kaingang: 11.10
+campos: 8.99
 sulistas: 7.96
-alemã: 7.83
-porto alegre: 7.64
+alemã: 7.82
 paraná: 7.48
-imigração: 7.25
+imigração: 7.23
 frio: 7.21
-churrasco chimarrão: 7.09
-gaúcho: 7.06
-tradições: 7.03
+gaúcho: 7.05
+tradições: 6.98
+grande: 6.75
+inverno: 6.71
+europeia: 6.51
+santa: 6.16
+tradição: 6.07
+bahia: 5.92

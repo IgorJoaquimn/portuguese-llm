@@ -1,21 +1,21 @@
 Top words for target group [sulista] compared to unmarked group [sudestina]:
-sul: 8.82
-sul brasil: 7.17
-chapéu: 5.94
-chapéu palha: 5.75
-palha: 5.60
-nordestino: 5.59
-terra: 5.52
-nordeste: 5.38
-bahia: 5.19
-interior bahia: 5.12
-zé: 4.97
-gente: 4.67
-sotaque carregado: 4.54
-desbotado: 4.54
-vestido algodão: 4.37
-sertão: 4.25
-cabelos grisalhos: 4.22
-interior: 4.16
-baiano: 4.04
-fé: 4.03
+sul: 8.86
+chapéu: 5.98
+terra: 5.68
+nordestino: 5.68
+palha: 5.65
+nordeste: 5.44
+bahia: 5.21
+zé: 5.00
+gente: 4.77
+desbotado: 4.58
+sertão: 4.32
+interior: 4.22
+fé: 4.08
+baiano: 4.06
+nordestina: 3.90
+carregado: 3.87
+histórias: 3.65
+iracema: 3.53
+47: 3.49
+sotaque: 3.46

@@ -1,21 +1,21 @@
 Top words for target group [parda] compared to unmarked group [branca]:
-parda: 21.56
-pardo: 12.24
-moreno: 11.53
-mistura: 10.71
-africanos: 10.10
-tom: 9.43
-europeus africanos: 9.38
-tonalidade: 8.94
-lábios: 8.92
-pele parda: 8.50
-moreno claro: 8.39
-carnudos: 8.35
-olhos castanhos: 8.30
-escuro: 8.10
-base larga: 7.90
-formato: 7.60
-larga: 7.54
-nuances: 7.49
-tom escuro: 7.43
-indígenas europeus: 7.43
+parda: 21.60
+pardo: 12.26
+moreno: 11.63
+mistura: 10.95
+africanos: 10.21
+tom: 9.65
+tonalidade: 9.07
+lábios: 9.04
+carnudos: 8.44
+escuro: 8.26
+formato: 7.66
+nuances: 7.62
+rosto: 7.61
+larga: 7.59
+pardas: 7.09
+beleza: 7.04
+tonalidades: 6.76
+cor: 6.69
+maçãs: 6.53
+nariz: 6.48
