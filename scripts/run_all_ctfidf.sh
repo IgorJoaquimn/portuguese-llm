@@ -32,7 +32,7 @@ for model in "${models[@]}"; do
         echo "[$counter/$total] Processing: Model=$model, Trait=$trait"
         
         # Run the analysis
-        python3 ctf_idf.py "$model" "$trait" --output-dir "$output_dir"
+        python3 -u -m src.tf-idf.ctf_idf "$model" "$trait" --output-dir "$output_dir"
         
         if [ $? -eq 0 ]; then
             echo "✓ Successfully completed: $model - $trait"

@@ -100,8 +100,8 @@ def main():
     parser = argparse.ArgumentParser(description='Perform Class-based TF-IDF analysis on text data')
     parser.add_argument('model_name', help='Name of the model to filter data by')
     parser.add_argument('agg_column', help='Column name to group data by (e.g., genero, regiao)')
-    parser.add_argument('--data-file', default='../../data/merged_data.parquet', 
-                       help='Path to the parquet data file (default: ../../data/merged_data.parquet)')
+    parser.add_argument('--data-file', default='data/merged_data.parquet', 
+                       help='Path to the parquet data file (default: data/merged_data.parquet)')
     parser.add_argument('--output-dir', default='.', 
                        help='Output directory for CSV file (default: current directory)')
     
