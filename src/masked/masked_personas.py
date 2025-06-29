@@ -29,6 +29,7 @@ absl.flags.DEFINE_string("target_col", None, "Nome da coluna com os grupos de in
 absl.flags.DEFINE_string("target_name", None, "Nome da query a ser analisada")
 absl.flags.DEFINE_string("unmarked_name", None, "Nome da query a ser analisada")
 absl.flags.DEFINE_string("text_col", "response", "Nome da coluna com o texto a ser analisado")
+absl.flags.DEFINE_string("model_name", "gemini-1.5-flash", "Nome do modelo a ser utilizado")
 absl.flags.mark_flag_as_required("input_file")
 absl.flags.mark_flag_as_required("target_col")
 absl.flags.mark_flag_as_required("target_name")
@@ -112,6 +113,7 @@ def main(_):
     target_name = FLAGS.target_name
     unmarked_name = FLAGS.unmarked_name
     text_col = FLAGS.text_col
+    model_name = FLAGS.model_name
 
     # Read the input file
     df = pd.read_parquet(input_file)
@@ -121,6 +123,8 @@ def main(_):
         raise ValueError(f"Target name {target_name} not found in the column {target_col}")
     if unmarked_name not in df[target_col].unique():
         raise ValueError(f"Unmarked name {unmarked_name} not found in the column {target_col}")
+    
+    df = df[df["model"] == model_name]
 
     target = df[df[target_col] == target_name][text_col].tolist()
     unmarked = df[df[target_col] == unmarked_name][text_col].tolist()
