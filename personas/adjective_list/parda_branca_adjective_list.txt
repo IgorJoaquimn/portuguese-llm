@@ -1,7 +1,0 @@
-nohup: ignoring input
-Top words for target group [parda] compared to unmarked group [branca]:
-pardo: 5.85
-parda: 3.57
-castanho escuro: 3.39
-castanhos escuros: 2.72
-morena: 2.62

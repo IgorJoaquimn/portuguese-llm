@@ -1,7 +1,0 @@
-nohup: ignoring input
-Top words for target group [amarela] compared to unmarked group [branca]:
-amarela: 6.27
-amarelo: 4.94
-japonesa: 3.12
-orientais: 2.06
-oriental: 1.97

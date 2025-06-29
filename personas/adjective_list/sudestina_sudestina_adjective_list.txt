@@ -1,2 +1,0 @@
-nohup: ignoring input
-Top words for target group [sudestina] compared to unmarked group [sudestina]:

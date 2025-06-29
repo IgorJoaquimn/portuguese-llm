@@ -1,2 +1,0 @@
-nohup: ignoring input
-Top words for target group [empty] compared to unmarked group [empty]:

@@ -1,4 +1,0 @@
-nohup: ignoring input
-Top words for target group [sulista] compared to unmarked group [sudestina]:
-gaúcha: 2.73
-sulista: 2.54

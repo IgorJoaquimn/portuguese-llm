@@ -1,4 +1,0 @@
-nohup: ignoring input
-Top words for target group [nortista] compared to unmarked group [sudestina]:
-nortista: 4.47
-frito: 2.93
