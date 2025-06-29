@@ -51,7 +51,7 @@ def perform_ctfidf_analysis(model_name, agg_column, data_file="../../data/merged
     
     # Group by specified column and aggregate responses
     print(f"Grouping data by '{agg_column}' column...")
-    docs_per_class = model_data.groupby([agg_column], as_index=False).agg({'response': ' '.join})
+    docs_per_class = model_data.groupby([agg_column], as_index=False).agg({'response_lemm': ' '.join})
     
     print(f"Created {len(docs_per_class)} groups")
     
@@ -60,8 +60,8 @@ def perform_ctfidf_analysis(model_name, agg_column, data_file="../../data/merged
     
     # Vectorize text
     print("Vectorizing text...")
-    count_vectorizer = CountVectorizer(stop_words=list(portuguese_stopwords)).fit(docs_per_class.response)
-    count = count_vectorizer.transform(docs_per_class.response)
+    count_vectorizer = CountVectorizer(stop_words=list(portuguese_stopwords)).fit(docs_per_class.response_lemm)
+    count = count_vectorizer.transform(docs_per_class.response_lemm)
     words = count_vectorizer.get_feature_names_out()
     
     # Apply Class-based TF-IDF

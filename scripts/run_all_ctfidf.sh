@@ -8,7 +8,7 @@ set -e  # Exit on any error
 
 # Define models and traits
 models=("gemini-1.5-flash" "gemini-2.0-flash")
-traits=("original_prompt")
+traits=("original_prompt" "raca" "genero" "regiao" "localidade")
 
 # Create output directory
 output_dir="ctfidf_results"

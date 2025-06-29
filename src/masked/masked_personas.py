@@ -46,7 +46,7 @@ def generate_counts(corpus, ngrams=2):
             min_df=0.01 , # Ignore words that appear in less than 2% of the documents
             max_df=0.8, # Ignore words that appear in more than 80% of the documents
             stop_words= stop_words,
-            ngram_range=(1, ngrams),
+            ngram_range=(1, 1),
             max_features=10000,
     )
     # Generate the count vectors
