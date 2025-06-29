@@ -16,25 +16,6 @@ except LookupError:
     nltk.download('stopwords')
 
 from nltk.corpus import stopwords
-from nltk.stem import SnowballStemmer
-import re
-
-# Initialize Portuguese stemmer as fallback
-portuguese_stemmer = SnowballStemmer('portuguese')
-
-# Try to load Portuguese spaCy model
-nlp = None
-try:
-    import spacy
-    nlp = spacy.load("pt_core_news_sm")
-except ImportError:
-    print("spaCy not installed. Please install it with: pip install spacy")
-    print("Then download Portuguese model with: python -m spacy download pt_core_news_sm")
-    print("Falling back to Portuguese stemmer...")
-except OSError:
-    print("Portuguese spaCy model not found. Please install it with:")
-    print("python -m spacy download pt_core_news_sm")
-    print("Falling back to Portuguese stemmer...")
 
 from sklearn.feature_extraction.text import CountVectorizer
 logging.getLogger().setLevel(logging.ERROR)
@@ -54,35 +35,10 @@ absl.flags.mark_flag_as_required("target_col")
 absl.flags.mark_flag_as_required("target_name")
 absl.flags.mark_flag_as_required("unmarked_name")
 
-def lemmatize_text(text):
-    """
-    Lemmatize text using spaCy for Portuguese, with fallback to Portuguese stemmer
-    """
-    # Remove non-alphabetic characters and convert to lowercase
-    text = re.sub(r'[^a-zA-ZÀ-ÿ\s]', '', text.lower())
-    
-    if nlp is not None:
-        # Use spaCy for proper Portuguese lemmatization
-        doc = nlp(text)
-        # Get lemmas for each token, excluding stop words, punctuation, and spaces
-        lemmatized_tokens = [token.lemma_ for token in doc 
-                           if not token.is_stop and not token.is_punct and not token.is_space 
-                           and len(token.text.strip()) > 2]
-        return ' '.join(lemmatized_tokens)
-    else:
-        # Fallback: use Portuguese stemmer from NLTK
-        words = text.split()
-        # Filter out short words and apply stemming
-        stemmed_words = [portuguese_stemmer.stem(word) for word in words if len(word) > 2]
-        return ' '.join(stemmed_words)
-
 def generate_counts(corpus, ngrams=2):
     """
-    Generate the vocabulary of the corpus with lemmatization
+    Generate the vocabulary of the corpus
     """
-    # Apply lemmatization to the entire corpus
-    lemmatized_corpus = [lemmatize_text(text) for text in corpus]
-    
     stop_words = list(set(stopwords.words('portuguese') + stopwords.words('english') + stopwords.words('spanish')))
     cv  = CountVectorizer(
             analyzer='word',
@@ -93,12 +49,12 @@ def generate_counts(corpus, ngrams=2):
             ngram_range=(1, ngrams),
             max_features=10000,
     )
-    # Generate the count vectors using lemmatized corpus
-    count_vector = cv.fit_transform(lemmatized_corpus)
+    # Generate the count vectors
+    count_vector = cv.fit_transform(corpus)
     vocab = cv.get_feature_names_out()
     return count_vector,vocab
 
-def get_log_odds(target_words, unmarked_words, prior_words, ngrams=1):
+def get_log_odds(target_words, unmarked_words, prior_words, ngrams=2):
     corpus = target_words + unmarked_words + prior_words
     count_vector, vocab = generate_counts(corpus, ngrams=ngrams) 
     # Slice the count vector to get the target, unmarked and prior words
