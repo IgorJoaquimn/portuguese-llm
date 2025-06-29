@@ -1,58 +1,71 @@
 # %%
-import re
+import requests
+from conllu import parse
+
+# %%
+from pandarallel import pandarallel
+
+pandarallel.initialize(progress_bar=True)
 
 # %%
 import pandas as pd
 df = pd.read_parquet("data/merged_data.parquet")
 
-from pt_lemmatizer import Lemmatizer
+# %%
+def generate_one_response(message):
+    request_param = data_metadata.copy()
+    request_param["data"] = message
+    response = requests.post(URL, data=request_param)
+    # Check if the response is valid
+    if response.status_code != 200:
+        raise Exception(f"Error: {response.status_code}, {response.text}")
+    # Check if the response is valid
+    if "result" not in response.json():
+        raise Exception(f"Error: {response.status_code}, {response.text}")
+    udpipe_output = parse(response.json()["result"])
+    return udpipe_output
 
 # %%
-import nltk
-try:
-    nltk.data.find('corpora/stopwords.zip')
-except LookupError:
-    nltk.download('stopwords')
-from nltk.corpus import stopwords
-
-# Initialize Portuguese lemmatizer
-lemmatizer = Lemmatizer()
-
+URL = 'http://lindat.mff.cuni.cz/services/udpipe/api/process'
+data_metadata = {
+'tokenizer': '',
+'tagger': '',
+'parser': '',
+'model': "portuguese-bosque-ud-2.12-230717",
+}
 
 # %%
+sentences = generate_one_response("oi mulheres 32 anos, tudo bem?")
 
-def lemmatize_text(text):
+# %%
+def extract_lemmas_string(sentences):
     """
-    Lemmatize text using pt_lemmatizer
+    Extract lemmas from a list of sentences and return them as a single string.
+    Filters out punctuation tokens (deprel == "punct").
+    
+    Args:
+        sentences: List of parsed sentences from UDPipe
+        
+    Returns:
+        str: Space-separated string of lemmas (excluding punctuation)
     """
-    # Handle null or empty text
-    if pd.isna(text) or not text.strip():
-        return ""
-    
-    # Remove non-alphabetic characters and convert to lowercase
-    text = re.sub(r'[^a-zA-ZÀ-ÿ\s]', '', text.lower())
-    
-    # Split into words and lemmatize each word
-    words = text.split()
-    # Filter out short words and apply lemmatization
-    lemmatized_words = [lemmatizer.lemmatize(word) for word in words if len(word) > 2]
-    return ' '.join(lemmatized_words)
-
+    lemmas = []
+    for sentence in sentences:
+        for token in sentence:
+            if token["deprel"] == "punct":
+                continue
+            if token["deprel"] == "nummod":
+                continue
+            lemmas.append(token["lemma"])
+    return " ".join(lemmas)
 
 # %%
-# Apply lemmatization to the response column
-print("Starting lemmatization of response column...")
-df['response_lemmatized'] = df['response'].apply(lemmatize_text)
+# Example usage
+lemmas_string = extract_lemmas_string(sentences)
+print("Lemmas as string:", lemmas_string)
 
 # %%
-# Save the updated dataframe
-print("Saving lemmatized data...")
-df.to_parquet("data/merged_data_lemmatized.parquet", index=False)
-print("Lemmatization complete! Saved to merged_data_lemmatized.parquet")
+df['response_lemm'] = df['response'].parallel_apply(lambda x: extract_lemmas_string(generate_one_response(x)))
 
-# %%
-# Display sample results
-print("\nSample of original vs lemmatized text:")
-for i in range(min(3, len(df))):
-    print(f"\nOriginal: {df.iloc[i]['response'][:100]}...")
-    print(f"Lemmatized: {df.iloc[i]['response_lemmatized'][:100]}...")
+
+df.to_parquet("data/merged_data_lemm.parquet", index=False)
