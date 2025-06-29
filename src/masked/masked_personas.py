@@ -54,7 +54,7 @@ def generate_counts(corpus, ngrams=2):
     vocab = cv.get_feature_names_out()
     return count_vector,vocab
 
-def get_log_odds(target_words, unmarked_words, prior_words, ngrams=2):
+def get_log_odds(target_words, unmarked_words, prior_words, ngrams=1):
     corpus = target_words + unmarked_words + prior_words
     count_vector, vocab = generate_counts(corpus, ngrams=ngrams) 
     # Slice the count vector to get the target, unmarked and prior words
