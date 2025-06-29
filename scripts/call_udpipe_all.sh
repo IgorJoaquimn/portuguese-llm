@@ -22,5 +22,9 @@ for file in "$PROMPT_DIR"/*.pickle; do
     # Run the command
     eval "$CMD"
 done
+
+# Wait for all background jobs to finish
+wait
+
 shopt -u nullglob  # Restore default behavior
 

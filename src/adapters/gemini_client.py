@@ -16,19 +16,15 @@ class GeminiClient(GenericClient):
         """Synchronous content generation."""
         prompt = self._format_messages(messages)
         response = self.client.models.generate_content(**config, contents=prompt)
-        # Follow the rate limit of 2000 requests per minute.
-        time.sleep(60 / 2000)
         return response.text
 
-    async def create_async(self, config, messages):
+    async def create_async(self, config, messages): # Renamed to create_async to distinguish
         """Asynchronous content generation."""
-        loop = asyncio.get_running_loop()
         prompt = self._format_messages(messages)
-        response = await loop.run_in_executor(None, self.client.generate_content, prompt, **config)
-        if response.candidates and response.candidates[0].content.parts:
-            return response.candidates[0].content.parts[0].text
-        else:
-            return None
+        # Await the generate_content call, as it performs network I/O
+        response = await self.client.aio.models.generate_content(**config, contents=prompt)
+        return response.text
+
 
     async def send_batch_messages(self, config, messages):
         """Asynchronously send a batch of messages."""

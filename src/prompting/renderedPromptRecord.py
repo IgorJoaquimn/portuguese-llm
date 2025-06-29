@@ -22,7 +22,7 @@ class RenderedPromptRecord():
 
     def add_message(self,original_prompt,config,trait,message):
         message_id = uuid5(NAMESPACE_DNS, 
-                           original_prompt + str(trait) + str(config)).int
+                           original_prompt + str(trait) + str(config))
 
         message_record = {
             "messageId": message_id,
@@ -54,14 +54,12 @@ class RenderedPromptRecord():
             **stats
         }
 
-        self.set_udpipe_if_non_existant()
         self.udpipe_data = pd.concat(
             [self.udpipe_data, pd.DataFrame([response_record])], ignore_index=True
         )
         return self.udpipe_data
 
     def count_udpipe(self,responseId):
-        self.set_udpipe_if_non_existant()
         # Check if the udpipe data is empty
         if self.udpipe_data.empty:
             return 0
@@ -76,19 +74,9 @@ class RenderedPromptRecord():
         # For each response, the UUID is the messageId + response
         self.response_data["responseId"] = self.response_data["messageId"].astype(str) + self.response_data["response"].astype(str)
         self.response_data["responseId"] = self.response_data["responseId"].apply(
-            lambda x: uuid5(NAMESPACE_DNS, x).int
+            lambda x: uuid5(NAMESPACE_DNS, x)
         )
         return self.response_data
-
-    def set_udpipe_if_non_existant(self):
-        # Check if the udpipe data already exists
-        try: 
-            if not self.udpipe_data.empty:
-                return self.udpipe_data
-        except AttributeError:
-            # If udpipe_data is not defined, initialize it
-            self.udpipe_data = pd.DataFrame()
-            return self.udpipe_data
 
     def count_responses(self,messageId):
         # Count the number of responses for a given messageId

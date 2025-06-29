@@ -81,16 +81,22 @@ class PromptRenderGenerator():
             PromptRenderGenerator.read_from_file(self.model_config_folder + file) 
             for file in os.listdir(self.model_config_folder)
         ]
+        print(configs)
         prompt_template = PromptRenderGenerator.read_from_file(prompt_path)
         print("Generating prompts from template",prompt_path)
         render = [
             self.generate_prompt_from_template(config + prompt_template) 
             for config in configs
         ]
-        messages_list, configs_list, trait_list = zip(*render)
+        # messages_list, configs_list, trait_list = zip(*render)
         record = RenderedPromptRecord(prompt_template, prompt_path)
-        for message, config,trait in zip(messages_list[0],configs_list[0],trait_list[0]):
-            record.add_message(prompt_template, config, trait, message[0])
+        # Iterate directly over the 'render' object
+        for message_contents, config_dicts, trait_values in render:
+            # Assuming 'message_content' is already the string/content you want,
+            # and not a list like message[0] was implying.
+            for message_content, config_dict, trait_value in zip(message_contents, config_dicts, trait_values):
+                record.add_message(prompt_template, config_dict, trait_value, message_content[0])
+
         return record
 
 def main(_):

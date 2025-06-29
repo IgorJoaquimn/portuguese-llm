@@ -10,6 +10,7 @@ models_list = {
     "deepseek-chat": "openai",
     "deepseek-reasoner": "openai",
     "gemini-2.0-flash": "gemini",
+    "gemini-1.5-flash": "gemini",
     "gemini-2.0": "gemini",
     "gemini-1.5": "gemini",
 }

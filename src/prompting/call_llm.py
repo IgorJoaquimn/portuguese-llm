@@ -5,6 +5,7 @@ import signal
 import logging
 import absl.app
 import absl.flags
+import asyncio
 
 from src.envs import openai_keys, gemini_keys
 from src.adapters.client_factory import ClientFactory
@@ -17,7 +18,6 @@ logging.getLogger("google_genai.models").setLevel(logging.ERROR)
 
 FLAGS = absl.flags.FLAGS
 
-# Definição das flags
 absl.flags.DEFINE_string("record_path", None, "Path that contains the desired record")
 absl.flags.DEFINE_integer("ntimes", 1, "Number of times that the response will be generated")
 absl.flags.mark_flag_as_required("record_path")
@@ -28,67 +28,74 @@ class LlmCaller():
         signal.signal(signal.SIGINT, self.handle_sigint)
         signal.signal(signal.SIGTERM, self.handle_sigint)
 
-    def generate_one_response(self,config,message):
-        return self.client.create(
+    async def generate_one_response(self,config,message):
+        return await self.client.create_async(
             config, message
         )
 
-
-    def feed_into_llm(self, record, ntimes=1):
+    async def feed_into_llm(self, record, ntimes=1):
         self.record = record
-        for row in self.record.message_iter(): 
-            print(f"Processing row with messageId:\t\t\t{row['messageId']}")
+        for i,row in enumerate(self.record.message_iter()):
+            print(f"Processing row with messageId:\t\t\t{row['messageId']} from {i+1}/{len(self.record.message_data)}")
             messageId = row["messageId"]
-            # Check if the messageId already has responses
             response_count = record.count_responses(messageId)
             if response_count >= ntimes:
                 print(f"Already generated {response_count} responses for messageId \t{messageId}\n")
                 continue
 
-            config = {key: row[key] for key in record.config_keys}  # Extract config from row
-            if(config["model"] != "gemini-2.0-flash"): continue
+            config = {key: row[key] for key in record.config_keys}
+            if(config["model"] not in ["gemini-1.5-flash", "gemini-2.0-flash"]):
+                print(f"Skipping messageId {messageId} as model is not impl (model is {config['model']})")
+                continue
             self.client = self.client_factory.get_client(config["model"])
 
             message = row["message"]
-            # Generate responses for each message 'ntimes' times
             print(f"Generating {ntimes - response_count} responses for messageId \t\t{messageId}")
-            responses = [ 
+
+            coroutines = [
                 self.generate_one_response(config, message)
-                for i in range(ntimes - response_count)
+                for _ in range(ntimes - response_count)
             ]
 
-            # Append all generated responses to the record
+            responses = await asyncio.gather(*coroutines)
+
             for response in responses:
                 self.record.add_response(messageId, response)
-
+            
             print(f"Done generating responses for messageId \t{messageId}\n")
         return self.record
-
-
 
     def handle_sigint(self,signal_received, frame):
         signal_str = signal.Signals(signal_received).name
         print(f"\n{signal_str} detected! Running cleanup function...")
-        # Perform any cleanup here
-        self.record.save_to_mirror_file()  # Save the record to a file
-        sys.exit(0)  # Exit the program gracefully
+        if hasattr(self, 'record') and self.record:
+            self.record.save_to_mirror_file()
+        sys.exit(0)
 
-def main(_):
+# Define a synchronous wrapper for absl.app.run
+def sync_main_wrapper(argv):
+    # This function will be called by absl.app.run
+    # Inside here, we explicitly run our async main
+    print("Inside sync_main_wrapper, initiating asyncio.run(async_main_logic)")
+    asyncio.run(async_main_logic(argv))
 
+# Define your actual async logic here
+async def async_main_logic(argv):
     record_path = FLAGS.record_path
     ntimes = FLAGS.ntimes
     record = RenderedPromptRecord.load_from_file_static(record_path)
-    assert record 
+    assert record
 
     client_factory = ClientFactory()
     client_factory.openai_keys = openai_keys
     client_factory.gemini_keys = gemini_keys
 
     caller = LlmCaller(client_factory)
-    record = caller.feed_into_llm(record,ntimes)
+    record = await caller.feed_into_llm(record, ntimes)
     record.save_to_mirror_file()
-    print(record)
+    print(f"Record saved to {record.new_path}")
 
 
 if __name__ == '__main__':
-    absl.app.run(main)
+    print("Executing absl.app.run(sync_main_wrapper)")
+    absl.app.run(sync_main_wrapper)

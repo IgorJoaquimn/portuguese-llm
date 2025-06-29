@@ -9,6 +9,7 @@ import absl.flags
 
 
 from src.prompting.renderedPromptRecord import RenderedPromptRecord
+from src.udpipe.LinguisticComplexityAnalyzer import LinguisticComplexityAnalyzer
 
 logging.getLogger().setLevel(logging.ERROR)
 
@@ -102,8 +103,10 @@ def main(_):
     record = RenderedPromptRecord.load_from_file_static(record_path)
     assert record 
 
-    caller = UdpipeCaller(URL)
-    record = caller.feed_into_udpipe(record,generate_stats=False)
+    caller = UdpipeCaller(URL,
+                        stats_generator=LinguisticComplexityAnalyzer())
+    record = caller.feed_into_udpipe(record,
+                        generate_stats=True)
     record.save_to_mirror_file()
 
 

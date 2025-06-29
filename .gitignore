@@ -1,5 +1,5 @@
 envs.py
 __pycache__/
-prompts/rendered/*
+prompts/rendered*
 local/
 data/

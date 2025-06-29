@@ -2,8 +2,7 @@
     "genero": [
         "homem",
         "mulher",
-        "não-binária",
-        ""
+        "não-binária"
     ],
 
     "raca": [
@@ -11,8 +10,7 @@
         "parda",
         "branca",
         "amarela",
-        "indígena",
-        ""
+        "indígena"
     ],
 
     "regiao":[
@@ -20,13 +18,11 @@
         "nordestina",
         "sulista",
         "sudestina",
-        "centro-oestina",
-        ""
+        "centro-oestina"
     ],
 
     "localidade":[
-        "brasileira",
-        ""
+        "brasileira"
     ],
 
     "unused": [""]
