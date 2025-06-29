@@ -1,0 +1,21 @@
+Top words for target group [não-binária] compared to unmarked group [homem]:
+pessoa: 47.34
+gênero: 45.92
+identidade: 28.53
+expressão: 26.62
+nome: 24.04
+pessoas: 22.74
+forma: 22.72
+arte: 21.08
+mundo: 20.68
+expressar: 20.54
+identidade gênero: 20.24
+pessoa pode: 19.81
+identidades: 17.22
+experiência: 16.98
+mundo justo: 15.97
+identifica: 15.95
+outras pessoas: 15.34
+autêntica: 15.12
+ativismo: 15.08
+liberdade: 14.70

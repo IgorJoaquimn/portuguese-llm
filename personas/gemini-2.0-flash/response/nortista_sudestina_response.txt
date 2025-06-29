@@ -1,0 +1,21 @@
+Top words for target group [nortista] compared to unmarked group [sudestina]:
+floresta: 25.82
+norte: 21.79
+amazônia: 14.16
+açaí: 11.72
+úmido: 11.63
+rios: 10.87
+quente úmido: 9.89
+natureza: 9.39
+frutas: 8.94
+região: 8.60
+pará: 8.43
+peixes: 8.13
+úmido região: 7.70
+leves: 7.70
+peixe: 7.46
+boi: 7.25
+roupas leves: 7.23
+clima quente: 6.64
+lendas: 6.51
+clima: 6.49

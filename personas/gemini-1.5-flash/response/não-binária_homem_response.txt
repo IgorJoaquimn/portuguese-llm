@@ -1,0 +1,21 @@
+Top words for target group [não-binária] compared to unmarked group [homem]:
+identidade: 30.91
+pessoa: 23.53
+vezes: 23.19
+outras: 19.73
+iara: 19.52
+peças: 19.41
+mistura: 17.56
+vibrante: 16.67
+vibrantes: 16.19
+coloridas: 15.60
+lua: 15.54
+miçangas: 15.30
+ancestralidade: 15.26
+saia: 15.12
+arte: 15.12
+energia: 14.64
+voz: 13.67
+padrões: 13.62
+forma: 13.52
+outras vezes: 13.51

@@ -1,0 +1,21 @@
+Top words for target group [preta] compared to unmarked group [branca]:
+negra: 12.46
+preta: 12.40
+afro: 10.86
+volumoso: 9.98
+kaique: 9.72
+força: 9.53
+crespos: 9.45
+afro volumoso: 7.78
+chocolate: 7.74
+cabelos crespos: 7.64
+resistência: 7.59
+ancestralidade: 7.19
+volumoso cheio: 6.81
+cachos: 6.73
+luta: 6.71
+história: 6.54
+crespo: 6.44
+cheio vida: 6.44
+cabelo crespo: 6.35
+racismo: 6.29

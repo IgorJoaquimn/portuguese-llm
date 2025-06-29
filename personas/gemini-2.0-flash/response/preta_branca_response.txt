@@ -1,0 +1,21 @@
+Top words for target group [preta] compared to unmarked group [branca]:
+preta: 23.76
+afro: 18.01
+racismo: 17.57
+negra: 16.70
+afro brasileira: 16.03
+africana: 14.40
+cultura afro: 14.35
+preto: 14.26
+força: 14.25
+cabelos crespos: 14.16
+luta: 12.69
+negro: 12.68
+ancestralidade africana: 12.27
+marrom: 11.91
+crespos: 11.57
+tranças: 11.54
+black: 11.49
+samba: 11.45
+black power: 11.35
+power: 11.35

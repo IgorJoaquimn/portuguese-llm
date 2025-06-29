@@ -1,0 +1,21 @@
+Top words for target group [nordestina] compared to unmarked group [sudestina]:
+nordestino: 17.54
+sertão: 16.27
+nordestina: 14.59
+seca: 10.92
+sol nordestino: 10.59
+iracema: 10.29
+caatinga: 9.19
+terra seca: 8.46
+sotaque nordestino: 7.79
+nome iracema: 7.51
+juazeiro: 7.21
+ceará: 6.26
+causticante: 6.22
+sol causticante: 6.22
+terra: 6.17
+céu: 6.01
+nordeste: 5.93
+nordestina brasileira: 5.69
+sertão nordestino: 5.43
+causticante sertão: 5.42
