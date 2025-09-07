@@ -3,3 +3,4 @@ __pycache__/
 prompts/rendered*
 local/
 data/
+logs/

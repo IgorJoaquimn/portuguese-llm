@@ -1,129 +1,30 @@
-Top words for target group [parda] compared to unmarked group [branca]:
-pardo: 13.46
-força: 7.97
-crespo: 6.80
-africano: 6.79
-escuro: 6.23
-nordestino: 6.20
-terra: 5.30
-carregar: 5.23
-lua: 5.12
-negro: 5.02
-grosso: 5.00
-tom: 4.94
-parda: 4.79
-resiliência: 4.54
-cachear: 4.54
-forte: 4.53
-história: 4.49
-isabela: 4.46
-indígeno: 4.45
-oval: 4.38
-leite: 4.36
-expressivo: 4.34
-salpicar: 4.13
-dente: 4.09
-emoldurar: 3.99
-luta: 3.97
-refletir: 3.93
-ora: 3.90
-sabedoria: 3.81
-volumoso: 3.79
-profundo: 3.74
-contar: 3.73
-resistência: 3.69
-sorriso: 3.67
-iara: 3.55
-mistura: 3.52
-caramelo: 3.52
-avermelhar: 3.52
-intensificar: 3.47
-alegria: 3.43
-alma: 3.42
-preto: 3.39
-beleza: 3.37
-rosto: 3.36
-dignidade: 3.30
-cacho: 3.25
-rebelde: 3.25
-nordeste: 3.17
-cheio: 3.17
-mão: 3.10
-joão: 3.07
-vibrante: 3.06
-reflexo: 3.05
-sob: 3.04
-saudável: 2.96
-gente: 2.95
-ancestralidade: 2.95
-alto: 2.93
-contagiante: 2.90
-café: 2.88
-intenso: 2.84
-seca: 2.81
-calejar: 2.77
-firme: 2.75
-fácil: 2.73
-suor: 2.73
-esperança: 2.71
-trabalho: 2.70
-brilho: 2.69
-colorir: 2.67
-lábio: 2.64
-limpo: 2.64
-escaldante: 2.60
-quente: 2.60
-orgulho: 2.57
-lutar: 2.57
-sonho: 2.53
-trança: 2.53
-amendoar: 2.53
-resiliente: 2.53
-inabalável: 2.50
-chuva: 2.49
-generoso: 2.48
-marca: 2.46
-esculpir: 2.43
-energia: 2.38
-rico: 2.38
-riqueza: 2.36
-emaranhado: 2.35
-veia: 2.34
-amarelar: 2.34
-moreno: 2.32
-estampar: 2.30
-fé: 2.30
-revelar: 2.30
-cerrado: 2.30
-geração: 2.30
-nome: 2.30
-iluminar: 2.29
-forró: 2.29
-mato: 2.27
-marcar: 2.26
-sertão: 2.25
-avermelhado: 2.23
-cada: 2.22
-céu: 2.22
-perseverança: 2.22
-beijar: 2.21
-raiz: 2.21
-roça: 2.19
-indígena: 2.18
-voz: 2.18
-pro: 2.15
-árduo: 2.13
-solto: 2.13
-franco: 2.09
-indomável: 2.08
-brisa: 2.08
-antônio: 2.07
-afeto: 2.07
-largo: 2.05
-diário: 2.04
-domar: 2.01
-herança: 2.00
-pulsar: 1.99
-miçanga: 1.98
-iracema: 1.98
-duro: 1.97
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'response_lemm'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 141, in <module>
+    absl.app.run(main)
+  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 316, in run
+    _run_main(main, args)
+  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 261, in _run_main
+    sys.exit(main(argv))
+             ^^^^^^^^^^
+  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 129, in main
+    target = df[df[target_col] == target_name][text_col].tolist()
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'response_lemm'

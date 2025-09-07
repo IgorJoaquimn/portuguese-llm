@@ -1,114 +1,30 @@
-Top words for target group [amarela] compared to unmarked group [branca]:
-amarelo: 15.81
-amendoar: 12.77
-kai: 9.08
-puxar: 7.72
-japonês: 7.05
-força: 5.98
-lua: 5.93
-dourar: 5.63
-nordestino: 5.54
-vibrante: 5.42
-escuro: 4.94
-negro: 4.89
-asiático: 4.69
-preto: 4.64
-brilhar: 4.55
-crespo: 4.37
-terra: 4.25
-riqueza: 4.22
-dente: 4.20
-moreno: 4.01
-acariciar: 3.99
-brisa: 3.95
-descendente: 3.94
-contagiante: 3.90
-beleza: 3.89
-tom: 3.86
-sorriso: 3.80
-refletir: 3.80
-carregar: 3.80
-colorir: 3.76
-herança: 3.69
-tropical: 3.68
-banhar: 3.58
-cerrado: 3.56
-forte: 3.50
-iracema: 3.47
-forró: 3.41
-sabedoria: 3.37
-alegria: 3.31
-brasileiro: 3.30
-cultura: 3.18
-cheio: 3.18
-mistura: 3.15
-emanar: 3.07
-leite: 3.02
-nordeste: 2.92
-salgado: 2.87
-caramelo: 2.86
-orgulho: 2.85
-arroz: 2.80
-geração: 2.79
-ancestralidade: 2.77
-acarajé: 2.77
-delicado: 2.75
-baiano: 2.75
-história: 2.73
-rosto: 2.72
-coração: 2.70
-resiliência: 2.69
-paraense: 2.64
-vivo: 2.59
-ancestral: 2.59
-vir: 2.58
-acobrear: 2.55
-escaldante: 2.54
-misturar: 2.53
-cada: 2.52
-costa: 2.45
-resistência: 2.43
-bronze: 2.43
-africano: 2.43
-estampar: 2.41
-sertão: 2.41
-sob: 2.40
-luta: 2.38
-saudável: 2.36
-belém: 2.35
-indígeno: 2.34
-mar: 2.33
-avó: 2.29
-caju: 2.29
-emoldurar: 2.28
-enquanto: 2.26
-português: 2.26
-alto: 2.26
-energia: 2.25
-pernambuco: 2.21
-luz: 2.20
-pro: 2.19
-graça: 2.17
-comida: 2.16
-quente: 2.14
-balançar: 2.13
-flor: 2.13
-culinária: 2.13
-contar: 2.12
-pintar: 2.09
-largo: 2.09
-motivo: 2.09
-cor: 2.08
-revelar: 2.05
-raiz: 2.04
-miçanga: 2.02
-dignidade: 2.01
-açaí: 2.01
-fazer: 2.01
-ágil: 1.99
-alma: 1.98
-gente: 1.98
-resiliente: 1.98
-fácil: 1.98
-reflexo: 1.97
-multifacetar: 1.96
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'response_lemm'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 141, in <module>
+    absl.app.run(main)
+  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 316, in run
+    _run_main(main, args)
+  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 261, in _run_main
+    sys.exit(main(argv))
+             ^^^^^^^^^^
+  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 129, in main
+    target = df[df[target_col] == target_name][text_col].tolist()
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'response_lemm'
