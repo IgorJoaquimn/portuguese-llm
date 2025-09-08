@@ -1,30 +1,245 @@
-nohup: ignoring input
-Traceback (most recent call last):
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
-    return self._engine.get_loc(casted_key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
-  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'response_lemm'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 141, in <module>
-    absl.app.run(main)
-  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 316, in run
-    _run_main(main, args)
-  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 261, in _run_main
-    sys.exit(main(argv))
-             ^^^^^^^^^^
-  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 129, in main
-    target = df[df[target_col] == target_name][text_col].tolist()
-             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/frame.py", line 4102, in __getitem__
-    indexer = self.columns.get_loc(key)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
-    raise KeyError(key) from err
-KeyError: 'response_lemm'
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 3600
+Sample target text: ser o Zé quase ano nascer e criar em Belém _ de o Pará o pele ser bem escuro herança de ancestral qu...
+Sample unmarked text: ser o João ano nascer e criar em Porto Alegre moreno claro cabelo castanho começar a embranquecer _ ...
+Top words for target group [preta] compared to unmarked group [branca]:
+crespo: 11.89
+volumoso: 11.66
+afro: 10.99
+força: 10.59
+kaique: 9.79
+preto: 9.10
+negro: 8.92
+história: 8.44
+resistência: 8.13
+chocolate: 7.83
+ancestralidade: 7.67
+luta: 7.40
+cacho: 7.38
+forte: 7.05
+vibrante: 6.93
+carregar: 6.79
+cheio: 6.69
+iara: 6.57
+turbante: 6.46
+racismo: 6.40
+lutar: 6.22
+voz: 6.22
+resiliência: 6.16
+samba: 5.94
+alegria: 5.80
+trança: 5.80
+leite: 5.78
+sabedoria: 5.74
+fé: 5.74
+contagiante: 5.65
+conceição: 5.50
+expressivo: 5.49
+baiano: 5.44
+rico: 5.44
+coroa: 5.37
+brilhante: 5.35
+dente: 5.31
+black: 5.29
+power: 5.29
+antônio: 5.11
+futuro: 4.93
+africano: 4.88
+sorriso: 4.80
+inabalável: 4.78
+colorir: 4.77
+riqueza: 4.71
+estrutural: 4.70
+beleza: 4.65
+cada: 4.64
+nordestino: 4.61
+profundo: 4.50
+orgulho: 4.43
+bahia: 4.39
+refletir: 4.38
+pulsar: 4.29
+suor: 4.23
+artista: 4.20
+ora: 4.18
+igualitário: 4.16
+construir: 4.15
+ecoar: 4.14
+firme: 4.14
+desigualdade: 4.03
+comunidade: 4.02
+negritude: 3.97
+ancestral: 3.89
+brilho: 3.83
+mulher: 3.83
+rouco: 3.82
+kai: 3.75
+veia: 3.74
+tom: 3.72
+impulsionar: 3.70
+geração: 3.70
+contar: 3.68
+brilhar: 3.67
+iluminar: 3.67
+emaranhado: 3.66
+paraense: 3.65
+esperança: 3.56
+transfobia: 3.55
+saudável: 3.53
+largo: 3.52
+justiça: 3.52
+igualdade: 3.50
+dignidade: 3.45
+terra: 3.43
+escuro: 3.42
+belém: 3.39
+rap: 3.38
+antirracista: 3.37
+sonho: 3.36
+roda: 3.36
+justo: 3.33
+salvador: 3.32
+fácil: 3.28
+alma: 3.25
+emoldurar: 3.23
+desafiar: 3.17
+café: 3.17
+resiliente: 3.17
+musicalidade: 3.16
+trajetória: 3.14
+celebrar: 3.10
+fortalecer: 3.09
+gente: 3.05
+diário: 3.04
+injustiça: 3.04
+trançar: 3.03
+dançar: 3.03
+enfrentar: 3.02
+cerrado: 3.00
+superação: 3.00
+denso: 2.99
+música: 2.98
+acarajé: 2.95
+representatividade: 2.93
+axé: 2.92
+cultura: 2.90
+existência: 2.86
+alagoas: 2.83
+escorrer: 2.82
+aula: 2.81
+estampar: 2.79
+sala: 2.78
+oxum: 2.76
+opressão: 2.75
+escravizar: 2.75
+diariamente: 2.75
+pará: 2.73
+melhor: 2.73
+silenciar: 2.72
+arte: 2.70
+ritmo: 2.70
+celebração: 2.67
+capoeira: 2.67
+identidade: 2.65
+amor: 2.64
+garra: 2.62
+conta: 2.62
+rosto: 2.57
+nome: 2.57
+penetrante: 2.56
+aisha: 2.56
+presença: 2.55
+abraçar: 2.52
+erguer: 2.51
+afirmação: 2.51
+marca: 2.50
+cachear: 2.49
+radiante: 2.48
+transbordar: 2.48
+professor: 2.45
+sob: 2.44
+conquista: 2.44
+comida: 2.43
+guiar: 2.42
+escaldante: 2.42
+maranhense: 2.41
+seguro: 2.41
+guardar: 2.41
+juba: 2.41
+união: 2.41
+mistura: 2.40
+alto: 2.40
+mogno: 2.39
+passo: 2.36
+orgulhoso: 2.35
+sobreviver: 2.35
+andar: 2.34
+escravidão: 2.34
+poderoso: 2.32
+declaração: 2.31
+indomável: 2.31
+pente: 2.31
+vencer: 2.31
+complexo: 2.30
+brisa: 2.30
+frente: 2.29
+miçanga: 2.28
+oportunidade: 2.28
+zeca: 2.27
+brasileiro: 2.26
+inspirar: 2.25
+importância: 2.25
+repente: 2.24
+batida: 2.24
+recusar: 2.24
+som: 2.24
+balançar: 2.24
+pagode: 2.24
+pele: 2.23
+leão: 2.22
+qualquer: 2.21
+daniel: 2.19
+energia: 2.19
+preconceito: 2.18
+derreter: 2.18
+herança: 2.18
+tela: 2.17
+guerreira: 2.17
+confiança: 2.16
+transformar: 2.14
+intensamente: 2.14
+solidariedade: 2.14
+preceder: 2.14
+riso: 2.13
+escola: 2.13
+quilombola: 2.12
+dança: 2.11
+berimbau: 2.10
+residir: 2.10
+presentear: 2.10
+sangue: 2.09
+emanar: 2.09
+iá: 2.08
+guerreiro: 2.07
+povo: 2.07
+kátia: 2.07
+desafio: 2.07
+carimbó: 2.06
+maranhão: 2.05
+terreiro: 2.05
+cadenciar: 2.05
+público: 2.05
+raiz: 2.04
+ativista: 2.03
+espaço: 2.03
+mover: 2.03
+único: 2.01
+melodia: 2.01
+país: 2.01
+sonor: 2.00
+combustível: 1.99
+referência: 1.98
+aline: 1.98
+dor: 1.98
+candomblé: 1.97
+benedito: 1.96

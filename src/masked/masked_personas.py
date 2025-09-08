@@ -39,20 +39,41 @@ def generate_counts(corpus, ngrams=2):
     """
     Generate the vocabulary of the corpus
     """
+    # Filter out empty strings and convert to string type
+    corpus = [str(text).strip() for text in corpus if text and str(text).strip()]
+    
+    if len(corpus) == 0:
+        raise ValueError("Corpus is empty after filtering")
+    
     stop_words = list(set(stopwords.words('portuguese') + stopwords.words('english') + stopwords.words('spanish')))
+    
+    # Use more flexible parameters for small datasets
     cv  = CountVectorizer(
             analyzer='word',
             decode_error='ignore',
-            min_df=0.01 , # Ignore words that appear in less than 2% of the documents
-            max_df=0.8, # Ignore words that appear in more than 80% of the documents
+            min_df=1,  # At least 1 occurrence (instead of 2% of documents)
+            max_df=0.95, # Appear in less than 95% of documents
             stop_words= stop_words,
             ngram_range=(1, 1),
             max_features=10000,
+            lowercase=True,
+            token_pattern=r'\b[a-zA-ZÀ-ÿ]{2,}\b'  # Only words with 2+ letters, including accents
     )
-    # Generate the count vectors
-    count_vector = cv.fit_transform(corpus)
-    vocab = cv.get_feature_names_out()
-    return count_vector,vocab
+    
+    try:
+        # Generate the count vectors
+        count_vector = cv.fit_transform(corpus)
+        vocab = cv.get_feature_names_out()
+        
+        if len(vocab) == 0:
+            raise ValueError("No valid vocabulary found after processing corpus")
+            
+        return count_vector, vocab
+    except ValueError as e:
+        print(f"Error in generate_counts: {e}")
+        print(f"Corpus size: {len(corpus)}")
+        print(f"Sample texts: {corpus[:3] if len(corpus) > 0 else 'Empty corpus'}")
+        raise
 
 def get_log_odds(target_words, unmarked_words, prior_words, ngrams=2):
     corpus = target_words + unmarked_words + prior_words
@@ -126,9 +147,28 @@ def main(_):
     if "model" not in df.columns:
         raise ValueError(f"Column 'model' not found in the input file")
     df = df[df["model"] == model_name]
+    # Filter out NaN values from text column before any group selection
+    # df = df[df[text_col].notna()]
+    
     target = df[df[target_col] == target_name][text_col].tolist()
     unmarked = df[df[target_col] == unmarked_name][text_col].tolist()
     prior = df[~df[target_col].isin([target_name, unmarked_name])][text_col].tolist()
+    
+    # Debug information
+    print(f"Target group size: {len(target)}")
+    print(f"Unmarked group size: {len(unmarked)}")
+    print(f"Prior group size: {len(prior)}")
+    
+    if len(target) == 0:
+        raise ValueError(f"No valid text data found for target group '{target_name}'")
+    if len(unmarked) == 0:
+        raise ValueError(f"No valid text data found for unmarked group '{unmarked_name}'")
+    if len(prior) == 0:
+        print("Warning: No prior data found, analysis may be less robust")
+    
+    # Show sample texts for debugging
+    print(f"Sample target text: {target[0][:100] if target else 'None'}...")
+    print(f"Sample unmarked text: {unmarked[0][:100] if unmarked else 'None'}...")
     
     z_scores = get_log_odds(target, unmarked, prior)
     z_scores = get_top_words(z_scores, n=20)

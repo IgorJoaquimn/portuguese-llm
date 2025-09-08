@@ -1,1 +1,6 @@
+Target group size: 2000
+Unmarked group size: 2000
+Prior group size: 4000
+Sample target text: eu chamar Anderson ter ano e ser um homem preto _ de o Norte mais precisamente de Belém _ de o Pará ...
+Sample unmarked text: eu chamar Anderson ter ano e ser um homem preto _ de o Norte mais precisamente de Belém _ de o Pará ...
 Top words for target group [homem] compared to unmarked group [homem]:

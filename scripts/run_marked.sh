@@ -2,9 +2,13 @@
 # This script runs the masked personas generation process
 
 # Common parameters
-INPUT_FILE="data/merged_data.parquet"
+INPUT_FILE="data/merged_data_sentiment.parquet"
 TEXT_COL="response_lemm"
-MODEL_NAMES=("gemini-1.5-flash" "gemini-2.0-flash")
+MODEL_NAMES=("gpt-4o" "gpt-4o-mini")
+
+# Concurrency control
+MAX_CONCURRENT_JOBS=10  # Adjust this number based on your system resources
+CURRENT_JOBS=0
 
 # Define arrays for each category
 declare -A RACA_TARGETS=(
@@ -29,13 +33,23 @@ declare -A REGIAO_TARGETS=(
     ["centro-oestina"]="sudestina"
 )
 
-# Function to run masked personas
+# Function to wait for available slot
+wait_for_slot() {
+    while [ $(jobs -r | wc -l) -ge $MAX_CONCURRENT_JOBS ]; do
+        sleep 1
+    done
+}
+
+# Function to run masked personas with concurrency control
 run_masked_persona() {
     local target_col=$1
     local target_name=$2
     local unmarked_name=$3
     local model_name=$4
     local output_file=$5
+    
+    echo "Starting job: $target_col/$target_name -> $model_name"
+    wait_for_slot  # Wait for available slot
     
     nohup python3 -u src/masked/masked_personas.py \
         --input_file="$INPUT_FILE" \
@@ -71,3 +85,8 @@ for MODEL_NAME in "${MODEL_NAMES[@]}"; do
         run_masked_persona "regiao" "$target" "$unmarked" "$MODEL_NAME" "$output_file"
     done
 done
+
+# Wait for all remaining jobs to complete
+echo "Waiting for all jobs to complete..."
+wait
+echo "All masked persona generation jobs completed."

@@ -123,17 +123,32 @@ class LemmatizationProcessor:
         self.current_df = df.copy()
         total_rows = len(df)
         
-        logger.info(f"Starting parallel lemmatization of {total_rows} rows")
+        # Initialize output column if it doesn't exist
+        if output_column not in self.current_df.columns:
+            self.current_df[output_column] = ""
+        
+        # Filter rows that need processing (skip rows that already have lemmatized text)
+        mask_empty = (
+            self.current_df[output_column].isna() | 
+            (self.current_df[output_column] == "") | 
+            (self.current_df[output_column] == "None")
+        )
+        rows_to_process = self.current_df[mask_empty]
+        rows_already_processed = total_rows - len(rows_to_process)
+        
+        logger.info(f"Starting parallel lemmatization of {len(rows_to_process)} rows (skipping {rows_already_processed} already processed)")
         logger.info(f"Text column: {text_column}")
         logger.info(f"Output column: {output_column}")
         logger.info(f"Workers: {self.n_workers}")
         logger.info(f"Parallel method: {self.parallel_method}")
         
-        # Initialize output column
-        self.current_df[output_column] = ""
+        # If no rows to process, return current df
+        if len(rows_to_process) == 0:
+            logger.info("No rows need processing. All rows already have lemmatized text.")
+            return self.current_df
         
-        # Prepare data for parallel processing
-        text_data = [(idx, row[text_column]) for idx, row in df.iterrows()]
+        # Prepare data for parallel processing (only rows that need processing)
+        text_data = [(idx, row[text_column]) for idx, row in rows_to_process.iterrows()]
         
         try:
             if self.parallel_method == "thread":
@@ -154,7 +169,7 @@ class LemmatizationProcessor:
                 }
                 
                 # Process results as they complete
-                with tqdm(total=total_rows, desc="Lemmatizing") as pbar:
+                with tqdm(total=len(rows_to_process), desc="Lemmatizing") as pbar:
                     for future in as_completed(future_to_idx):
                         try:
                             result = future.result()
@@ -173,11 +188,11 @@ class LemmatizationProcessor:
                                 with self.lock:
                                     self.processed_count += 1
                                     if self.processed_count % self.save_interval == 0:
-                                        logger.info(f"Progress: {self.processed_count}/{total_rows} processed")
+                                        logger.info(f"Progress: {self.processed_count}/{len(rows_to_process)} processed (total: {self.processed_count + rows_already_processed}/{total_rows})")
                             else:
                                 self.processed_count += 1
                                 if self.processed_count % self.save_interval == 0:
-                                    logger.info(f"Progress: {self.processed_count}/{total_rows} processed")
+                                    logger.info(f"Progress: {self.processed_count}/{len(rows_to_process)} processed (total: {self.processed_count + rows_already_processed}/{total_rows})")
                             
                             pbar.update(1)
                             
@@ -207,16 +222,31 @@ class LemmatizationProcessor:
         self.current_df = df.copy()
         total_rows = len(df)
         
-        logger.info(f"Starting sequential lemmatization of {total_rows} rows")
+        # Initialize output column if it doesn't exist
+        if output_column not in self.current_df.columns:
+            self.current_df[output_column] = ""
+        
+        # Filter rows that need processing (skip rows that already have lemmatized text)
+        mask_empty = (
+            self.current_df[output_column].isna() | 
+            (self.current_df[output_column] == "") | 
+            (self.current_df[output_column] == "None")
+        )
+        rows_to_process = self.current_df[mask_empty]
+        rows_already_processed = total_rows - len(rows_to_process)
+        
+        logger.info(f"Starting sequential lemmatization of {len(rows_to_process)} rows (skipping {rows_already_processed} already processed)")
         logger.info(f"Text column: {text_column}")
         logger.info(f"Output column: {output_column}")
         
-        # Initialize output column
-        self.current_df[output_column] = ""
+        # If no rows to process, return current df
+        if len(rows_to_process) == 0:
+            logger.info("No rows need processing. All rows already have lemmatized text.")
+            return self.current_df
         
         try:
-            # Process with progress bar
-            for idx, row in tqdm(df.iterrows(), total=total_rows, desc="Lemmatizing"):
+            # Process with progress bar (only rows that need processing)
+            for idx, row in tqdm(rows_to_process.iterrows(), total=len(rows_to_process), desc="Lemmatizing"):
                 text = row[text_column]
                 
                 try:
@@ -226,7 +256,7 @@ class LemmatizationProcessor:
                     
                     # Periodic save
                     if self.processed_count % self.save_interval == 0:
-                        logger.info(f"Progress: {self.processed_count}/{total_rows} processed")
+                        logger.info(f"Progress: {self.processed_count}/{len(rows_to_process)} processed (total: {self.processed_count + rows_already_processed}/{total_rows})")
                         
                 except Exception as e:
                     logger.warning(f"Error processing row {idx}: {e}")
@@ -244,7 +274,9 @@ class LemmatizationProcessor:
             self.save_failed_items()
             logger.info(f"\n=== Processing Summary ===")
             logger.info(f"Total rows: {total_rows}")
-            logger.info(f"Successfully processed: {self.processed_count}")
+            logger.info(f"Rows already processed (skipped): {rows_already_processed}")
+            logger.info(f"Rows processed in this run: {self.processed_count}")
+            logger.info(f"Successfully processed: {self.processed_count + rows_already_processed}")
             logger.info(f"Failed items: {len(self.failed_items)}")
             
         return self.current_df

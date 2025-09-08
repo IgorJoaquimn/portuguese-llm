@@ -1,30 +1,163 @@
-nohup: ignoring input
-Traceback (most recent call last):
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
-    return self._engine.get_loc(casted_key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
-  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
-  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
-KeyError: 'response_lemm'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 141, in <module>
-    absl.app.run(main)
-  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 316, in run
-    _run_main(main, args)
-  File "/home/joaquino/miniconda3/envs/poc_2/lib/python3.11/site-packages/absl/app.py", line 261, in _run_main
-    sys.exit(main(argv))
-             ^^^^^^^^^^
-  File "/home/joaquino/portuguese-llm/src/masked/masked_personas.py", line 129, in main
-    target = df[df[target_col] == target_name][text_col].tolist()
-             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/frame.py", line 4102, in __getitem__
-    indexer = self.columns.get_loc(key)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/joaquino/.local/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
-    raise KeyError(key) from err
-KeyError: 'response_lemm'
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 3600
+Sample target text: ser o Manoel quase ano o pele bronzear _ por o sol causticante _ de o sertão nordestino craquelar _ ...
+Sample unmarked text: ser o João ano nascer e criar em Porto Alegre moreno claro cabelo castanho começar a embranquecer _ ...
+Top words for target group [parda] compared to unmarked group [branca]:
+pardo: 13.51
+força: 8.56
+crespo: 7.05
+africano: 6.92
+escuro: 6.68
+nordestino: 6.59
+terra: 5.90
+carregar: 5.81
+negro: 5.36
+grosso: 5.33
+lua: 5.30
+tom: 5.25
+história: 5.07
+forte: 4.99
+resiliência: 4.84
+parda: 4.81
+indígeno: 4.70
+cachear: 4.68
+isabela: 4.55
+expressivo: 4.52
+leite: 4.51
+oval: 4.47
+refletir: 4.39
+salpicar: 4.35
+dente: 4.32
+luta: 4.31
+emoldurar: 4.29
+sabedoria: 4.19
+contar: 4.13
+profundo: 4.11
+sorriso: 4.05
+ora: 4.03
+resistência: 3.98
+volumoso: 3.96
+iara: 3.86
+mistura: 3.79
+rosto: 3.75
+preto: 3.70
+beleza: 3.65
+alegria: 3.64
+alma: 3.63
+avermelhar: 3.61
+caramelo: 3.60
+intensificar: 3.56
+dignidade: 3.50
+mão: 3.50
+rebelde: 3.43
+cheio: 3.42
+cacho: 3.39
+sol: 3.38
+vibrante: 3.37
+sob: 3.37
+nordeste: 3.36
+gente: 3.33
+reflexo: 3.25
+ancestralidade: 3.21
+joão: 3.21
+trabalho: 3.19
+alto: 3.13
+calejar: 3.12
+café: 3.10
+saudável: 3.07
+contagiante: 3.07
+intenso: 3.07
+luna: 3.04
+fácil: 3.03
+firme: 3.00
+colorir: 2.97
+seca: 2.95
+brilho: 2.90
+suor: 2.90
+esperança: 2.89
+lutar: 2.84
+orgulho: 2.83
+lábio: 2.83
+escaldante: 2.79
+quente: 2.76
+limpo: 2.75
+marca: 2.75
+revelar: 2.71
+inabalável: 2.70
+amendoar: 2.70
+chuva: 2.69
+trança: 2.68
+sonho: 2.66
+resiliente: 2.66
+rico: 2.64
+índio: 2.64
+manu: 2.62
+nome: 2.62
+generoso: 2.61
+esculpir: 2.61
+geração: 2.61
+marcar: 2.61
+energia: 2.59
+cada: 2.58
+riqueza: 2.57
+fé: 2.50
+cerrado: 2.50
+veia: 2.48
+sertão: 2.48
+conforme: 2.47
+céu: 2.47
+aurora: 2.47
+raiz: 2.47
+amarelar: 2.46
+roça: 2.44
+estampar: 2.44
+emaranhado: 2.44
+moreno: 2.44
+iluminar: 2.43
+voz: 2.43
+forró: 2.41
+mato: 2.38
+árduo: 2.36
+beijar: 2.32
+avermelhado: 2.31
+perseverança: 2.30
+solto: 2.29
+vez: 2.29
+pedreiro: 2.26
+largo: 2.26
+indígena: 2.24
+brisa: 2.24
+pro: 2.23
+miçanga: 2.22
+herança: 2.22
+antônio: 2.19
+franco: 2.17
+humilde: 2.16
+afeto: 2.16
+duro: 2.16
+diário: 2.15
+indomável: 2.14
+pulsar: 2.13
+iracema: 2.12
+ancestral: 2.11
+reinventar: 2.10
+acompanhar: 2.09
+brasilidade: 2.08
+domar: 2.08
+agarrar: 2.06
+desafiar: 2.06
+bagunçar: 2.05
+molhar: 2.05
+penetrante: 2.04
+povo: 2.03
+bronze: 2.02
+confortar: 2.00
+zeca: 1.99
+mostrar: 1.98
+guardar: 1.98
+carnudo: 1.98
+luca: 1.98
+cravar: 1.98
+coque: 1.97
+mapa: 1.96

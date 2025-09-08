@@ -51,9 +51,21 @@ def perform_ctfidf_analysis(model_name, agg_column, data_file="../../data/merged
     
     # Group by specified column and aggregate responses
     print(f"Grouping data by '{agg_column}' column...")
-    docs_per_class = model_data.groupby([agg_column], as_index=False).agg({'response_lemm': ' '.join})
+    # Filter out None values before joining
+    def safe_join(series):
+        # Filter out None values and convert to string, then join
+        valid_responses = series.dropna().astype(str)
+        return ' '.join(valid_responses) if len(valid_responses) > 0 else ''
     
-    print(f"Created {len(docs_per_class)} groups")
+    docs_per_class = model_data.groupby([agg_column], as_index=False).agg({'response_lemm': safe_join})
+    
+    # Filter out empty strings and ensure we have valid data
+    docs_per_class = docs_per_class[docs_per_class['response_lemm'].str.len() > 0]
+    
+    if docs_per_class.empty:
+        raise ValueError(f"No valid text data found after filtering for model '{model_name}' and column '{agg_column}'")
+    
+    print(f"Created {len(docs_per_class)} groups with valid text data")
     
     # Setup Portuguese stopwords
     portuguese_stopwords = setup_nltk_stopwords()

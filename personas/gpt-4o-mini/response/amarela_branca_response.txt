@@ -1,0 +1,69 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 3600
+Sample target text: ser um homem amarelo nato _ de o região norte _ de o Brasil onde o floresta e o rio se entrelaçar em...
+Sample unmarked text: ser um homem branco nascer e criar _ em o Norte _ de o Brasil o meu pele claro eu destacar em meio a...
+Top words for target group [amarela] compared to unmarked group [branca]:
+amarelo: 15.25
+dourar: 9.37
+dourado: 8.08
+amarelar: 7.25
+étnico: 5.99
+escuro: 5.78
+mistura: 5.35
+vibrante: 5.00
+expressivo: 4.89
+ascendência: 4.37
+diversidade: 4.12
+cheio: 4.00
+tom: 3.91
+puxar: 3.60
+brilho: 3.47
+riqueza: 3.42
+alegria: 3.40
+cor: 3.39
+energia: 3.32
+cultural: 3.30
+história: 3.23
+influência: 3.11
+amendoar: 3.05
+herança: 3.00
+curto: 2.86
+rico: 2.85
+etnia: 2.80
+refletir: 2.73
+força: 2.65
+único: 2.64
+contagiante: 2.58
+compor: 2.52
+liso: 2.45
+radiante: 2.43
+flora: 2.43
+pronto: 2.42
+indígeno: 2.42
+origem: 2.42
+oriental: 2.39
+representar: 2.36
+iluminar: 2.35
+cultura: 2.34
+olá: 2.32
+tonalidade: 2.31
+modernidade: 2.28
+pele: 2.27
+celebrar: 2.27
+raiz: 2.24
+país: 2.20
+estampa: 2.17
+sam: 2.16
+parte: 2.15
+compartilhar: 2.08
+areia: 2.06
+brasileiro: 2.05
+colorir: 2.04
+lembrar: 2.02
+imaginar: 2.00
+ouro: 1.99
+fauna: 1.99
+identidade: 1.97
+traço: 1.97
+entrelaçar: 1.97

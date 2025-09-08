@@ -21,7 +21,7 @@ def setup_roberta_sentiment():
     """Setup RoBERTa sentiment analysis pipeline for Portuguese."""
     try:
         # Using a Portuguese RoBERTa model for sentiment analysis
-        model_name = "cardiffnlp/twitter-roberta-base-sentiment-latest"
+        model_name = "cardiffnlp/xlm-roberta-base-tweet-sentiment-pt"
         
         # Alternative Portuguese models:
         # "neuralmind/bert-base-portuguese-cased" 

@@ -10,8 +10,8 @@ echo "1. Use lemmatized text column:"
 echo "   python3 src/sentiment/roberta_sentiment.py --input_file=$INPUT_FILE --text_column=response_lemm"timent analysis on Portuguese text data
 
 # Common parameters
-INPUT_FILE="data/merged_data.parquet"
-TEXT_COL="response"
+INPUT_FILE="data/merged_data_lemm.parquet"
+TEXT_COL="response_lemm"
 OUTPUT_DIR="sentiment_results"
 
 # Create output directory

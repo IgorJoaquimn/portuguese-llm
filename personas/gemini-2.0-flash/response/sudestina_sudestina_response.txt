@@ -1,1 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: ser um cara preto nascer e criar _ em o correria _ de o sudeste mais precisamente crescer em Minas G...
+Sample unmarked text: ser um cara preto nascer e criar _ em o correria _ de o sudeste mais precisamente crescer em Minas G...
 Top words for target group [sudestina] compared to unmarked group [sudestina]:
