@@ -1,1 +1,6 @@
+Target group size: 2000
+Unmarked group size: 2000
+Prior group size: 4000
+Sample target text: ser o Zé quase ano nascer e criar em Belém _ de o Pará o pele ser bem escuro herança de ancestral qu...
+Sample unmarked text: ser o Zé quase ano nascer e criar em Belém _ de o Pará o pele ser bem escuro herança de ancestral qu...
 Top words for target group [homem] compared to unmarked group [homem]:

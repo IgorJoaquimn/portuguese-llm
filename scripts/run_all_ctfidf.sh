@@ -7,7 +7,7 @@
 set -e  # Exit on any error
 
 # Define models and traits
-models=("gemini-1.5-flash" "gemini-2.0-flash")
+models=("gpt-4o" "gpt-4o-mini")
 traits=("original_prompt" "raca" "genero" "regiao" "localidade")
 
 # Create output directory
@@ -32,7 +32,7 @@ for model in "${models[@]}"; do
         echo "[$counter/$total] Processing: Model=$model, Trait=$trait"
         
         # Run the analysis
-        python3 -u -m src.tf-idf.ctf_idf "$model" "$trait" --output-dir "$output_dir"
+        python3 -u -m src.tf-idf.ctf_idf "$model" "$trait" --data-file "data/merged_data_sentiment.parquet" --output-dir "$output_dir"
         
         if [ $? -eq 0 ]; then
             echo "✓ Successfully completed: $model - $trait"

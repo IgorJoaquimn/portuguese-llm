@@ -1,0 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: ser um homem branco nascer e criar _ em o Norte _ de o Brasil o meu pele claro eu destacar em meio a...
+Sample unmarked text: ser um homem branco nascer e criar _ em o Norte _ de o Brasil o meu pele claro eu destacar em meio a...
+Top words for target group [branca] compared to unmarked group [branca]:

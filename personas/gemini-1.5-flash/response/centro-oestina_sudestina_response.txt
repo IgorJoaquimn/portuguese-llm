@@ -1,6 +1,11 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 3600
+Sample target text: ser mineiro nascer e criar em Juiz de Fora mas o asfalto quente de Belo Horizonte já grudar _ em o m...
+Sample unmarked text: ser o Luiz ano nascer e criar em Santos _ em o calor quase sufocante _ de o litoral paulista o pele ...
 Top words for target group [centro-oestina] compared to unmarked group [sudestina]:
 cerrado: 17.15
-centro: 16.25
+centro: 16.24
 mato: 8.13
 oeste: 7.98
 goiás: 7.18
@@ -8,28 +13,45 @@ goiano: 7.14
 goiânia: 6.92
 sertanejo: 6.70
 brasília: 5.99
+chapada: 5.06
 xavante: 4.88
-campo: 3.78
+pantanal: 4.51
+campo: 3.77
 fazenda: 3.60
 ipê: 3.41
-terra: 3.41
-alice: 3.15
+terra: 3.38
+alice: 3.14
 paisagem: 3.04
-animal: 2.59
+capim: 3.01
+soja: 2.61
+viola: 2.59
+animal: 2.58
+pantaneiro: 2.56
 atlético: 2.55
-natureza: 2.49
+natureza: 2.48
 honestidade: 2.44
 rural: 2.36
+agrônomo: 2.35
 horizonte: 2.31
-céu: 2.28
-chuva: 2.18
-couro: 2.18
+fincar: 2.31
+inserir: 2.30
+céu: 2.27
+xingu: 2.23
+ariovaldo: 2.20
+guimarães: 2.20
+chuva: 2.17
+couro: 2.17
 franco: 2.16
+helena: 2.15
 bota: 2.12
-região: 2.08
-crescer: 2.06
+pecuária: 2.10
+grossense: 2.07
+região: 2.07
+crescer: 2.05
+engenheiro: 2.03
 joão: 2.03
 pôr: 2.02
 kaiowá: 1.99
 projeto: 1.98
-grosso: 1.98
+nativo: 1.97
+grosso: 1.97

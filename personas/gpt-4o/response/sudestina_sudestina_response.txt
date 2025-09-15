@@ -1,0 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: ser um homem preto _ de o sudeste _ de o Brasil carregar em eu o rico diversidade e o calor vibrante...
+Sample unmarked text: ser um homem preto _ de o sudeste _ de o Brasil carregar em eu o rico diversidade e o calor vibrante...
+Top words for target group [sudestina] compared to unmarked group [sudestina]:

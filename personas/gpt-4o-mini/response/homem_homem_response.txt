@@ -1,0 +1,6 @@
+Target group size: 2000
+Unmarked group size: 2000
+Prior group size: 4000
+Sample target text: eu ser um homem negro nascer e criar _ em o Norte _ de o Brasil meu pele ter um tom profundo que car...
+Sample unmarked text: eu ser um homem negro nascer e criar _ em o Norte _ de o Brasil meu pele ter um tom profundo que car...
+Top words for target group [homem] compared to unmarked group [homem]:

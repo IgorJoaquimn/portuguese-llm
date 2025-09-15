@@ -1,1 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: ser o João ano nascer e criar em Porto Alegre moreno claro cabelo castanho começar a embranquecer _ ...
+Sample unmarked text: ser o João ano nascer e criar em Porto Alegre moreno claro cabelo castanho começar a embranquecer _ ...
 Top words for target group [branca] compared to unmarked group [branca]:

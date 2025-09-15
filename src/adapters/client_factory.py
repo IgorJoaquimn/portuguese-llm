@@ -5,6 +5,7 @@ from src.adapters.gemini_client  import GeminiClient
 models_list = {
     "gpt-3.5-turbo": "openai",
     "gpt-4o": "openai",
+    "gpt-4o-mini": "openai",
     "gpt-4": "openai",
     "sabia-3": "openai",
     "deepseek-chat": "openai",

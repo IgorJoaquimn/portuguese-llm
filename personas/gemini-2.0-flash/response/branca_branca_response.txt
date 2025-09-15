@@ -1,1 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: bem deixar eu eu apresentar eu chamar Rafael ter ano e ser nascer e criar em Porto Alegre ser branco...
+Sample unmarked text: bem deixar eu eu apresentar eu chamar Rafael ter ano e ser nascer e criar em Porto Alegre ser branco...
 Top words for target group [branca] compared to unmarked group [branca]:

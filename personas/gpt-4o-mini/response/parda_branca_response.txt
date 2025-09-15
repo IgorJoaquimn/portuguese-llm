@@ -1,0 +1,60 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 3600
+Sample target text: oi meu nome ser Lucas ser um homem pardo nascer e criar _ em o Norte _ de o Brasil crescer em meio _...
+Sample unmarked text: ser um homem branco nascer e criar _ em o Norte _ de o Brasil o meu pele claro eu destacar em meio a...
+Top words for target group [parda] compared to unmarked group [branca]:
+pardo: 16.10
+cachear: 9.04
+mistura: 8.13
+moreno: 6.43
+crespo: 5.86
+marrom: 5.69
+volumoso: 5.49
+étnico: 5.48
+africano: 5.42
+escuro: 5.19
+expressivo: 5.15
+tom: 4.31
+resultado: 4.27
+cheio: 3.80
+encaracolar: 3.61
+solto: 3.51
+compor: 3.50
+história: 3.50
+herança: 3.39
+revelar: 3.34
+deixar: 3.09
+refletir: 3.07
+força: 3.06
+lábio: 3.03
+médio: 2.91
+europeia: 2.89
+bronze: 2.87
+ancestralidade: 2.77
+rico: 2.76
+largo: 2.75
+nuance: 2.74
+caramelo: 2.72
+tonalidade: 2.71
+oi: 2.69
+emoldurar: 2.66
+vivacidade: 2.60
+brilho: 2.57
+raiz: 2.46
+transmitir: 2.45
+determinação: 2.34
+traço: 2.33
+alegria: 2.30
+luta: 2.29
+arredondar: 2.28
+carregar: 2.28
+multicultural: 2.26
+melhor: 2.21
+volume: 2.20
+leite: 2.18
+vibrante: 2.16
+prender: 2.10
+riqueza: 2.03
+mostrar: 2.00
+rua: 1.98

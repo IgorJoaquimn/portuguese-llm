@@ -1,1 +1,6 @@
+Target group size: 1200
+Unmarked group size: 1200
+Prior group size: 4800
+Sample target text: ser o Luiz ano nascer e criar em Santos _ em o calor quase sufocante _ de o litoral paulista o pele ...
+Sample unmarked text: ser o Luiz ano nascer e criar em Santos _ em o calor quase sufocante _ de o litoral paulista o pele ...
 Top words for target group [sudestina] compared to unmarked group [sudestina]:
