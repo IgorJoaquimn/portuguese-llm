@@ -4,3 +4,6 @@ prompts/rendered*
 local/
 data/
 logs/
+.parquet
+embeddings/embedding_analysis_results/
+embeddings/bert_embeddings/
