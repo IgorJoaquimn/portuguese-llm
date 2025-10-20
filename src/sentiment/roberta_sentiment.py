@@ -35,7 +35,8 @@ def setup_roberta_sentiment():
             tokenizer=model_name,
             device=0 if torch.cuda.is_available() else -1,
             truncation=True,
-            max_length=512
+            max_length=512,
+            return_all_scores=True  # This returns scores for all classes
         )
         
         return sentiment_pipeline
