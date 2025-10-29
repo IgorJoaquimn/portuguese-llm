@@ -1,6 +1,4 @@
 import sys
-import json
-import pickle
 import signal
 import logging
 import absl.app
@@ -38,6 +36,7 @@ class LlmCaller():
     async def feed_into_llm(self, record, ntimes=1):
         self.record = record
         for i,row in enumerate(self.record.message_iter()):
+            messageId = None
             try:
                 print(f"Processing row with messageId:\t\t\t{row['messageId']} from {i+1}/{len(self.record.message_data)}")
                 messageId = row["messageId"]
