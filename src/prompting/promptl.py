@@ -1,6 +1,5 @@
 import os
 import json
-import openai
 from promptl_ai import Promptl
 
 import itertools

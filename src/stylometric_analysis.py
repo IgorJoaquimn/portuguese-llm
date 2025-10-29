@@ -15,10 +15,9 @@ Based on the methodology described in parliamentary discourse analysis research.
 import pandas as pd
 import numpy as np
 import spacy
-import textstat
 import re
 from collections import Counter
-from typing import Dict, List, Tuple, Optional
+from typing import Dict
 import logging
 
 # Configure logging

@@ -10,6 +10,8 @@ models_list = {
     "sabia-3": "openai",
     "deepseek-chat": "openai",
     "deepseek-reasoner": "openai",
+    "gemini-2.5-pro": "gemini",
+    "gemini-2.5-flash": "gemini",
     "gemini-2.0-flash": "gemini",
     "gemini-1.5-flash": "gemini",
     "gemini-2.0": "gemini",
