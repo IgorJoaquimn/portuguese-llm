@@ -1,5 +1,6 @@
 import pickle
 import os
+import warnings
 import pandas as pd
 from token_count import TokenCount
 from uuid import uuid5,NAMESPACE_DNS
@@ -137,12 +138,35 @@ class RenderedPromptRecord():
         """Returns the merged data as a DataFrame."""
         # Join message_data and response_data on 'messageId'
         merged_data = pd.merge(self.message_data, self.response_data, on="messageId", how="left")
-        # Join response_data and udpipe_data on 'responseId'
-        merged_data = pd.merge(merged_data, self.udpipe_data, on="responseId", how="left")
-        # Fill NaN values in 'response' column with empty strings
-        merged_data["response"] = merged_data["response"].fillna("")
-        # Fill NaN values in 'udpipe_result' column with empty strings
-        merged_data["udpipe_result"] = merged_data["udpipe_result"].fillna("")
+
+        # Ensure responseId exists in response_data (generate if missing)
+        if "responseId" not in self.response_data.columns:
+            # Try to generate responseId column from responses if possible
+            try:
+                self.generate_responseId()
+            except Exception:
+                # If generation fails, warn and continue — we'll skip udpipe merge
+                warnings.warn("Could not generate 'responseId' for response_data; skipping udpipe merge.")
+
+        # Only attempt to merge udpipe data if both sides have 'responseId'
+        if "responseId" in merged_data.columns and "responseId" in self.udpipe_data.columns:
+            merged_data = pd.merge(merged_data, self.udpipe_data, on="responseId", how="left")
+        else:
+            if not self.udpipe_data.empty:
+                # udpipe_data exists but doesn't have the expected key; warn the user
+                warnings.warn("udpipe_data present but 'responseId' column missing — skipping udpipe merge.")
+
+        # Fill NaN values in 'response' column with empty strings if present
+        if "response" in merged_data.columns:
+            merged_data["response"] = merged_data["response"].fillna("")
+
+        # Fill NaN values in 'udpipe_result' column with empty strings if present
+        if "udpipe_result" in merged_data.columns:
+            merged_data["udpipe_result"] = merged_data["udpipe_result"].fillna("")
+        else:
+            # Ensure downstream code can rely on the column existing
+            merged_data["udpipe_result"] = ""
+
         return merged_data
 
     def merged_iter(self):

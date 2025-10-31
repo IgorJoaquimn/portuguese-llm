@@ -5,7 +5,7 @@ import absl.app
 import absl.flags
 import asyncio
 
-from src.envs import openai_keys, gemini_keys
+from src.envs import openai_keys, gemini_keys, deepseek_keys
 from src.adapters.client_factory import ClientFactory
 from src.prompting.renderedPromptRecord import RenderedPromptRecord
 
@@ -61,7 +61,7 @@ class LlmCaller():
                     return  # This row is done
 
                 config = {key: row[key] for key in self.record.config_keys}
-                if config["model"] not in ["gemini-2.5-pro"]:
+                if config["model"] not in ["deepseek-chat"]:
                     print(f"Skipping messageId {messageId} as model is not impl (model is {config['model']})")
                     return # This row is done
 
@@ -156,6 +156,7 @@ async def async_main_logic(argv):
     client_factory = ClientFactory()
     client_factory.openai_keys = openai_keys
     client_factory.gemini_keys = gemini_keys
+    client_factory.deepseek_keys = deepseek_keys
 
     # --- 9. Pass the concurrency limit to the caller ---
     caller = LlmCaller(client_factory, FLAGS.concurrency)

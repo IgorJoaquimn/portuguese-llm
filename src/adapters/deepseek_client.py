@@ -3,13 +3,23 @@ from src.adapters.generic_client import GenericClient
 from openai import AsyncOpenAI
 from openai import OpenAI
 
-class OpenAIClient(GenericClient):
+class DeepseekClient(GenericClient):
+    """
+    Deepseek client that uses the OpenAI-compatible API.
+    Deepseek API endpoint: https://api.deepseek.com
+    Supports models: deepseek-chat, deepseek-reasoner
+    """
+    
     def __init__(self, api_key):
-        client = AsyncOpenAI(api_key=api_key)
+        # Use Deepseek's OpenAI-compatible endpoint
+        client = AsyncOpenAI(
+            api_key=api_key,
+            base_url="https://api.deepseek.com"
+        )
         super().__init__(api_key, client)
 
     def _convert_message_format(self, messages):
-        """Convert message objects to OpenAI API format"""
+        """Convert message objects to OpenAI API format (same as OpenAI)"""
         if isinstance(messages, list):
             converted_messages = []
             for msg in messages:

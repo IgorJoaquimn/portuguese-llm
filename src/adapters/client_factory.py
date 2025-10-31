@@ -1,6 +1,7 @@
 from src.adapters.generic_client import GenericClient  
 from src.adapters.openai_client  import OpenAIClient
 from src.adapters.gemini_client  import GeminiClient
+from src.adapters.deepseek_client import DeepseekClient
 
 models_list = {
     "gpt-3.5-turbo": "openai",
@@ -8,8 +9,8 @@ models_list = {
     "gpt-4o-mini": "openai",
     "gpt-4": "openai",
     "sabia-3": "openai",
-    "deepseek-chat": "openai",
-    "deepseek-reasoner": "openai",
+    "deepseek-chat": "deepseek",
+    "deepseek-reasoner": "deepseek",
     "gemini-2.5-pro": "gemini",
     "gemini-2.5-flash": "gemini",
     "gemini-2.0-flash": "gemini",
@@ -38,6 +39,11 @@ class ClientFactory:
             if not self.gemini_keys:
                 raise ValueError("No Gemini keys available.")
             return GeminiClient(api_key=self.gemini_keys[0])
+
+        elif model == "deepseek":
+            if not self.deepseek_keys:
+                raise ValueError("No Deepseek keys available.")
+            return DeepseekClient(api_key=self.deepseek_keys[0])
 
         else:
             raise ValueError(f"Model {model} is not supported.")
