@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from src.prompting.renderedPromptRecord import RenderedPromptRecord
-from src.udpipe.LinguisticComplexityAnalyzer import LinguisticComplexityAnalyzer
+from src.text_metrics.linguistic_complexity import LinguisticComplexityAnalyzer
 from src.udpipe.udpipe_utils import UDPipeClient
 
 logging.getLogger().setLevel(logging.ERROR)
