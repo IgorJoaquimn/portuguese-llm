@@ -2,13 +2,13 @@ from src.adapters.generic_client import GenericClient
 from src.adapters.openai_client  import OpenAIClient
 from src.adapters.gemini_client  import GeminiClient
 from src.adapters.deepseek_client import DeepseekClient
+from src.adapters.maritaca_client import MaritacaClient
 
 models_list = {
     "gpt-3.5-turbo": "openai",
     "gpt-4o": "openai",
     "gpt-4o-mini": "openai",
     "gpt-4": "openai",
-    "sabia-3": "openai",
     "deepseek-chat": "deepseek",
     "deepseek-reasoner": "deepseek",
     "gemini-2.5-pro": "gemini",
@@ -17,6 +17,9 @@ models_list = {
     "gemini-1.5-flash": "gemini",
     "gemini-2.0": "gemini",
     "gemini-1.5": "gemini",
+    "sabia-3": "maritaca",
+    "sabia-3.1": "maritaca",
+    "sabiazinho-3": "maritaca",
 }
 
 class ClientFactory:
@@ -44,6 +47,11 @@ class ClientFactory:
             if not self.deepseek_keys:
                 raise ValueError("No Deepseek keys available.")
             return DeepseekClient(api_key=self.deepseek_keys[0])
+
+        elif model == "maritaca":
+            if not self.sabia_keys:
+                raise ValueError("No Maritaca/Sabiá keys available.")
+            return MaritacaClient(api_key=self.sabia_keys[0])
 
         else:
             raise ValueError(f"Model {model} is not supported.")

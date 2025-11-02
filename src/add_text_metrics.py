@@ -199,7 +199,7 @@ class ParquetMetricsEnricher:
             
             # Compute metrics (naturally handles both fresh and resume scenarios)
             logger.info(f"Computing metrics for {len(df)} rows...")
-            metrics_list = self._compute_metrics(df, text_column, udpipe_column, existing_metrics=metrics_list)
+            metrics_list, udpipe_results_list = self._compute_metrics(df, text_column, udpipe_column, existing_metrics=metrics_list)
             
             if metrics_list is None:
                 return False
@@ -207,6 +207,10 @@ class ParquetMetricsEnricher:
             # Add metrics to dataframe
             logger.info(f"Adding metrics as new columns...")
             metrics_df = pd.DataFrame(metrics_list)
+            
+            # Add UDPipe results back to the dataframe
+            logger.info(f"Adding UDPipe results column...")
+            df[udpipe_column] = udpipe_results_list
             
             # Remove duplicate columns if they already exist in df
             duplicate_cols = [col for col in metrics_df.columns if col in df.columns]
@@ -245,10 +249,15 @@ class ParquetMetricsEnricher:
             return False
     
     def _compute_metrics(self, df: pd.DataFrame, text_column: str, udpipe_column: str = None,
-                        existing_metrics: list = None) -> list:
-        """Compute metrics for all rows using configured parallel method, optionally resuming from checkpoint."""
-        # Initialize or resume metrics list
+                        existing_metrics: list = None) -> tuple:
+        """Compute metrics for all rows using configured parallel method, optionally resuming from checkpoint.
+        
+        Returns:
+            Tuple of (metrics_list, udpipe_results_list)
+        """
+        # Initialize or resume metrics list and UDPipe results list
         metrics_list = existing_metrics if existing_metrics is not None else [None] * len(df)
+        udpipe_results_list = [None] * len(df)
         
         # Find starting index (first None entry if resuming)
         start_idx = 0
@@ -267,19 +276,19 @@ class ParquetMetricsEnricher:
         
         # Use appropriate execution strategy
         if self.parallel_method == "sequential":
-            self._execute_sequential(df, text_column, udpipe_column, metrics_list, start_idx)
+            self._execute_sequential(df, text_column, udpipe_column, metrics_list, udpipe_results_list, start_idx)
         elif self.parallel_method == "thread":
-            self._execute_parallel(df, text_column, udpipe_column, metrics_list, start_idx, ThreadPoolExecutor)
+            self._execute_parallel(df, text_column, udpipe_column, metrics_list, udpipe_results_list, start_idx, ThreadPoolExecutor)
         elif self.parallel_method == "process":
-            self._execute_parallel(df, text_column, udpipe_column, metrics_list, start_idx, ProcessPoolExecutor)
+            self._execute_parallel(df, text_column, udpipe_column, metrics_list, udpipe_results_list, start_idx, ProcessPoolExecutor)
         else:
             logger.warning(f"Unknown parallel method: {self.parallel_method}. Using sequential.")
-            self._execute_sequential(df, text_column, udpipe_column, metrics_list, start_idx)
+            self._execute_sequential(df, text_column, udpipe_column, metrics_list, udpipe_results_list, start_idx)
         
-        return metrics_list
+        return metrics_list, udpipe_results_list
     
     def _execute_sequential(self, df: pd.DataFrame, text_column: str, udpipe_column: str,
-                           metrics_list: list, start_idx: int) -> None:
+                           metrics_list: list, udpipe_results_list: list, start_idx: int) -> None:
         """Execute sequential computation, processing rows from start_idx onward."""
         rows_to_process = range(start_idx, len(df))
         
@@ -291,7 +300,9 @@ class ParquetMetricsEnricher:
             text = row.get(text_column, '')
             udpipe_output = row.get(udpipe_column, '') if udpipe_column else None
             
-            metrics_list[idx] = self._process_row(idx, text, udpipe_output)
+            metrics, udpipe_result = self._process_row(idx, text, udpipe_output)
+            metrics_list[idx] = metrics
+            udpipe_results_list[idx] = udpipe_result
             
             # Save checkpoint periodically
             if self.checkpoint_interval > 0 and (idx - start_idx + 1) % self.checkpoint_interval == 0:
@@ -302,7 +313,7 @@ class ParquetMetricsEnricher:
                 })
     
     def _execute_parallel(self, df: pd.DataFrame, text_column: str, udpipe_column: str,
-                         metrics_list: list, start_idx: int, executor_class) -> None:
+                         metrics_list: list, udpipe_results_list: list, start_idx: int, executor_class) -> None:
         """Execute parallel computation, processing rows from start_idx onward."""
         # Prepare rows to process
         rows_to_process = [
@@ -330,8 +341,9 @@ class ParquetMetricsEnricher:
                     for future in as_completed(future_to_idx):
                         idx = future_to_idx[future]
                         try:
-                            metrics = future.result()
+                            metrics, udpipe_result = future.result()
                             metrics_list[idx] = metrics
+                            udpipe_results_list[idx] = udpipe_result
                             if metrics is not None and metrics != self.metrics_analyzer._get_empty_metrics():
                                 self.processed_count += 1
                             else:
@@ -339,6 +351,7 @@ class ParquetMetricsEnricher:
                         except Exception as e:
                             logger.debug(f"Error analyzing row {idx}: {e}")
                             metrics_list[idx] = self.metrics_analyzer._get_empty_metrics()
+                            udpipe_results_list[idx] = ""
                             self.failed_count += 1
                         
                         processed_since_checkpoint += 1
@@ -355,12 +368,12 @@ class ParquetMetricsEnricher:
             logger.error(f"Error during parallel processing: {e}")
             # Continue (checkpoint already saved)
     
-    def _process_row(self, idx: int, text: str, udpipe_output: str = None) -> dict:
-        """Process a single row and return metrics dict."""
+    def _process_row(self, idx: int, text: str, udpipe_output: str = None) -> tuple:
+        """Process a single row and return (metrics dict, udpipe_result)."""
         # Skip empty text
         if not text or (isinstance(text, float) and pd.isna(text)):
             self.failed_count += 1
-            return self.metrics_analyzer._get_empty_metrics()
+            return self.metrics_analyzer._get_empty_metrics(), ""
         
         text = str(text) if text is not None else ''
         udpipe_output = str(udpipe_output) if udpipe_output else None
@@ -375,18 +388,31 @@ class ParquetMetricsEnricher:
                 include_ner=True,
                 include_lemmatization=True
             )
+            
+            # Get the actual UDPipe result used for analysis
+            # If no pre-computed UDPipe output was provided, we need to get it from the analyzer
+            if udpipe_output is None:
+                # Call UDPipe to get the result for saving
+                udpipe_result = self.metrics_analyzer.udpipe_client.generate_one_response(text)
+            else:
+                udpipe_result = udpipe_output
+            
             self.processed_count += 1
-            return metrics
+            return metrics, udpipe_result
         except Exception as e:
             logger.debug(f"Error analyzing row {idx}: {e}")
             self.failed_count += 1
-            return self.metrics_analyzer._get_empty_metrics()
+            return self.metrics_analyzer._get_empty_metrics(), ""
 
-    def _analyze_row(self, idx: int, text: str, udpipe_output: str = None):
-        """Analyze a single row (helper for parallel processing)."""
+    def _analyze_row(self, idx: int, text: str, udpipe_output: str = None) -> tuple:
+        """Analyze a single row (helper for parallel processing).
+        
+        Returns:
+            Tuple of (metrics dict, udpipe_result string)
+        """
         # Skip empty text
         if not text or (isinstance(text, float) and pd.isna(text)):
-            return self.metrics_analyzer._get_empty_metrics()
+            return self.metrics_analyzer._get_empty_metrics(), ""
         
         text = str(text) if text is not None else ''
         udpipe_output = str(udpipe_output) if udpipe_output else None
@@ -401,10 +427,18 @@ class ParquetMetricsEnricher:
                 include_ner=True,
                 include_lemmatization=True
             )
-            return metrics
+            
+            # Get the actual UDPipe result used for analysis
+            if udpipe_output is None:
+                # Call UDPipe to get the result for saving
+                udpipe_result = self.metrics_analyzer.udpipe_client.generate_one_response(text)
+            else:
+                udpipe_result = udpipe_output
+            
+            return metrics, udpipe_result
         except Exception as e:
             logger.debug(f"Error analyzing row {idx}: {e}")
-            return self.metrics_analyzer._get_empty_metrics()
+            return self.metrics_analyzer._get_empty_metrics(), ""
     
     def _print_summary(self, df_original: pd.DataFrame, df_enriched: pd.DataFrame, metrics_df: pd.DataFrame):
         """Print summary of enrichment operation."""

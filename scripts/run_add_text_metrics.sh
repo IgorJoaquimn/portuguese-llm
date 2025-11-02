@@ -16,8 +16,8 @@ echo "Starting metrics enrichment..."
 echo ""
 
 python3 -u -m src.add_text_metrics \
-    --input_file=data/gemini_data.parquet \
-    --output_file=data/gemini_data_with_metrics.parquet \
+    --input_file=data/gpt_data.parquet \
+    --output_file=data/gpt_data_with_metrics.parquet \
     --text_column=response \
     --udpipe_column=udpipe_result \
     --batch_size=100
